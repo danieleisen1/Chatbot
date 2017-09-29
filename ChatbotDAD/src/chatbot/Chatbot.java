@@ -4,10 +4,14 @@ public class Chatbot {
 
 	private String username;
 	private boolean chatting;
-	private Topic DanielE;
+	private Topic danielE;
+	private Topic danielM;
+	private Topic aliceK;
 		
 	public Chatbot() {
-		DanielE = new ChatbotDanielE();
+		danielE = new ChatbotDanielE();
+		danielM = new ChatbotDanielM();
+		aliceK = new ChatbotAliceK();
 		username = "Unknown User";
 		chatting = true; 
 	}
@@ -17,7 +21,13 @@ public class Chatbot {
 	}
 	
 	public Topic getDanielE() {
-		return DanielE;
+		return danielE;
+	}
+	public Topic getDanielM() {
+		return danielM;
+	}
+	public Topic getAliceK() {
+		return aliceK;
 	}
 	
 	public void startChatting() {
@@ -29,10 +39,19 @@ public class Chatbot {
 			ChatbotMain.print("What would you like to talk about");
 			String response = ChatbotMain.getInput();
 			
-			if(DanielE.isTriggered(response)) {
+			if(danielE.isTriggered(response)) {
 				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
-				DanielE.talk(response);
-			}else {
+				danielE.talk(response);
+			}
+			else if(danielM.isTriggered(response)) {
+				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				danielM.talk(response);
+			}
+			else if(aliceK.isTriggered(response)) {
+				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				aliceK.talk(response);
+			}
+			else {
 				ChatbotMain.print("I'm sorry. I don't understand. I never said I was perfect.");
 			}
 		}
