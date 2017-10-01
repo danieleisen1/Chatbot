@@ -8,7 +8,7 @@ public class ChatbotDanielE implements Topic {
 	private String response;
 	
 	public ChatbotDanielE() {
-		String[] temp = {"stuff","things","whatever","nothing"};
+		String[] temp = {"dane_stuff","dane_things","dane_whatever","dane_nothing"};
 		keywords = temp;
 		goodbyeKeyword = "bye";
 		secretKeyword = "pug";

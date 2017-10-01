@@ -40,17 +40,17 @@ public class ChatbotMain {
 	}
 		
 		
-		
-		
-		
 	
-	
-	
-	public static boolean keywordIsIsolated(int psn, String keyword, String s){
+	public static boolean keywordIsIsolated( int psn, String keyword, String s ) {
 		return true;
 	}
 
 	public static boolean noNegations(String s, int psn){
+		
+		if( s.toUpperCase().contains( "NO" ) || s.toUpperCase().contains( "NOT" )) {
+			return false;
+		}
+		
 		return true;
 	}
 

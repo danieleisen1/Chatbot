@@ -8,8 +8,7 @@ public class ChatbotAliceK implements Topic {
 	private String response;
 
 	public ChatbotAliceK() {
-		String[] temp = {"stuff","things","whatever", "nothing"};
-		keywords = temp;
+		keywords = new String[] { "stuff","things","whatever", "nothing"};
 		goodbyeKeyword= "bye";
 		secretKeyword= "pug";
 		response = "";
@@ -17,6 +16,8 @@ public class ChatbotAliceK implements Topic {
 
 	public void talk(String response)
 	{
+		
+		/**
 		ChatbotMain.print("Hey! So you want to talk about generic boring things, huh? I love talking about that. So tell me something.");
 		response = ChatbotMain.getInput();
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
@@ -31,9 +32,29 @@ public class ChatbotAliceK implements Topic {
 		}
 		ChatbotMain.print("Well , it was nice talking to you, "+ChatbotMain.chatbot.getUsername()+"!");
 		ChatbotMain.chatbot.startChatting();
+		*/
+		
+		
+		for( String keyword : keywords ) {
+			if( response.contains( secretKeyword ))
+			{
+				ChatbotMain.print("I cant even. I love pugs so much. Wow. You are so cool.");
+			}
+			else if( response.contains( keyword )) {
+				switch( keyword ) {
+				case "stuff": ChatbotMain.print(" Alice: Yeah, some stuff man");  break;
+				case "whatever": ChatbotMain.print("Alice: Talk more specifically, not just whatever");  break;
+				}
+				
+			}
+		}
+		
+		
 	}
+	
 	public boolean isTriggered(String response)
 	{
+		
 		for(int i =0;i< keywords.length;i++) 
 		{
 			if(ChatbotMain.findKeyword(response, keywords[i], 0)>=0)
@@ -42,6 +63,18 @@ public class ChatbotAliceK implements Topic {
 			}
 		}
 		return false;
+		
+		/*
+		
+		
+		String[] toks = response.split( " " );
+		for( String currentTok : toks ) {
+			for( String keyword : this.keywords ) {
+			}
+		}
+		*/
+		
+		
 	}
 
 }
