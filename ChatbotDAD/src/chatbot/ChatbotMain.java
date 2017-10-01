@@ -43,7 +43,7 @@ public class ChatbotMain {
 		
 		
 		
-	}
+	
 	
 	
 	public static boolean keywordIsIsolated(int psn, String keyword, String s){
@@ -120,4 +120,4 @@ public class ChatbotMain {
 
 }
 
-}
+
