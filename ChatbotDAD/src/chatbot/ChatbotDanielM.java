@@ -19,9 +19,9 @@ public class ChatbotDanielM implements Topic {
 	{
 		ChatbotMain.print("Hey! So you want to talk about generic boring things, huh? I love talking about that. So tell me something.");
 		response = ChatbotMain.getInput();
-		while(ChatbotMain.findkeyword(response, goodbyeKeyword, 0) == -1)
+		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
 		{
-			if(ChatbotMain.findkeyword(response, secretKeyword, 0) >=0)
+			if(ChatbotMain.findKeyword(response, secretKeyword, 0) >=0)
 			{
 				ChatbotMain.print("I cant even. I love pugs so much. Wow. You are so cool.");
 			}else
@@ -36,7 +36,7 @@ public class ChatbotDanielM implements Topic {
 	{
 		for(int i =0;i< keywords.length;i++) 
 		{
-			if(ChatbotMain.findkeyword(response, keywords[i], 0)>=0)
+			if(ChatbotMain.findKeyword(response, keywords[i], 0)>=0)
 			{
 				return true;
 			}
