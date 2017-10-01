@@ -1,8 +1,8 @@
 package chatbot;
 
-public class AliceBot implements Topic {
+public class ChatbotAliceK implements Topic {
 
-	public AliceBot() {
+	public ChatbotAliceK() {
 		// TODO Auto-generated constructor stub
 	}
 
