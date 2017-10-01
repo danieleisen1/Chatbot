@@ -8,7 +8,7 @@ public class ChatbotAliceK implements Topic {
 	private String response;
 
 	public ChatbotAliceK() {
-		keywords = new String[] { "stuff","things","whatever", "nothing"};
+		keywords = new String[] { "go yale" , "go bulldogs" , "yale sucks" , "harvard sucks" , "harvard is bad" ,"" ,  "go crimson" , "crimson" , "don't have greek life" , "no greek life" , "greek life" , "which house is the best" , "" , "stuff","things","whatever", "nothing"};
 		goodbyeKeyword= "bye";
 		secretKeyword= "pug";
 		response = "";
