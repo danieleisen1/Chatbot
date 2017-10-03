@@ -44,23 +44,23 @@ public class ChatbotAliceK implements Topic {
 			}
 			else if( response.contains( keyword )) {
 				switch( keyword ) {
-				case "stuff": ChatbotMain.print(" Alice: Yeah, some stuff man");  break;
-				case "whatever": ChatbotMain.print("Alice: Talk more specifically, not just whatever"); 
-				case "go yale" : ChatbotMain.print(" Did you mean Harvard? Yeah go Harvard!"); 
-				case "go bulldogs" : ChatbotMain.print("What's good with you? You mispelled Crimson."); 
-				case "yale sucks" : ChatbotMain.print("Right on!!!"); 
-				case "harvard sucks" : ChatbotMain.print("You've been brainwashed to epic proportions");
-				case "harvard is bad" : ChatbotMain.print("If bad means good then totally! Harvard is bad.");
-				case "harvard sucks at football" : ChatbotMain.print("At least our students get into graduate school");
-				case "harvard is bad at footbal" : ChatbotMain.print("Not like you're any better");
-				case "john harvard" : ChatbotMain.print("John Harvard did not actually found Harvard! There are three main myths about John Harvard's statue in the Harvard Yard. 1) It isn't actually John Harvard /n 2) John Harvard isn't the founder of Harvard, even though 'founder' is engraved on the statue /n 3) Harvard was founded in 1636, not 1638, as the engraving on the statue claims.");
-				case "annenberg is great" : ChatbotMain.multiLinePrint("Not like you're any better");
-				case "go crimson" : ChatbotMain.multiLinePrint("Yeah!!!! GO CRIMSON");
-				case "which house is the best": ChatbotMain.multiLinePrint("Yeah!!!! GO CRIMSON");
-				case "party" : ChatbotMain.multiLinePrint("Party?!!! Yeah don't worry we have those. ");
-				case "parties" : ChatbotMain.multiLinePrint("Party?!!! Yeah don't worry we have those. ");
-				
-				break;
+				case "stuff": ChatbotMain.print(" Yeah, some stuff man");  break;
+				case "whatever": ChatbotMain.print(" Talk more specifically, not just whatever"); break;
+				case "go yale" : ChatbotMain.print(" Did you mean Harvard? Yeah go Harvard!"); break;
+				case "go bulldogs" : ChatbotMain.print("What's good with you? You mispelled Crimson."); break;
+				case "yale sucks" : ChatbotMain.print("Right on!!!"); break;
+				case "harvard   sucks" : ChatbotMain.print("You've been brainwashed to epic proportions"); break;
+				case "harvard is bad" : ChatbotMain.print("If bad means good then totally! Harvard is bad."); break;
+				case "harvard sucks at football" : ChatbotMain.print("At least our students get into graduate school"); break;
+				case "harvard is bad at footbal" : ChatbotMain.print("Not like you're any better"); break;
+				case "john harvard" : ChatbotMain.print("John Harvard did not actually found Harvard! There are three main myths about John Harvard's statue in the Harvard Yard. 1) It isn't actually John Harvard 2) John Harvard isn't the founder of Harvard, even though 'founder' is engraved on the statue 3) Harvard was founded in 1636, not 1638, as the engraving on the statue claims."); break;
+				case "annenberg is great" : ChatbotMain.print("Not like you're any better"); break;
+				case "go crimson" : ChatbotMain.print("Yeah!!!! GO CRIMSON"); break;
+				case "which house is the best": ChatbotMain.print("Yeah!!!! GO CRIMSON"); break;
+				case "party" : ChatbotMain.print("Party?!!! Yeah don't worry we have those. "); break;
+				case "parties" : ChatbotMain.print("Party?!!! Yeah don't worry we have those. "); break;
+				case "harvard" : ChatbotMain.print("The greatest school in the world, what would you like to talk about regarding Harvard? "); break;
+
 				}
 				
 			}
@@ -91,8 +91,11 @@ public class ChatbotAliceK implements Topic {
 		}
 		*/
 		
+		//
 		
 	}
+	
+	
 	
 	
 
