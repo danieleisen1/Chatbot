@@ -6,16 +6,59 @@ public class ChatbotAliceK implements Topic {
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String response;
+	
+	private String[] footballGame;
+	private String[] footballPositive;
+	private String[] footballNegative;
+	
+	private String[] places;
+	private String[] placePositive;
+	private String[] placeNegative;
+	
+	private String[] food;
+	private String[] foodPositive;
+	private String[] foodNegative;
+	
+	private int emotion;
+	
+	
 	//private String[] responses;
 
 	public ChatbotAliceK() {
 		keywords = new String[] { "go yale" , "go bulldogs" , "yale sucks" , "harvard sucks" , "harvard is bad" ,"harvard sucks at football" , "harvard is bad at football" , "harvard vs yale football game" , "football game" , "yale vs harvard football game" , "harvard yale football game" , "yale harvard football game" , "harvard will win" , "harvard always win" , "yale will win" , "yale always wins" , "john harvard" , "annenberg" , "annenberg is great" , "food" , "charles river" , "cambridge is beautiful" , "boston is beautiful" , "boston" , "cambridge" ,  "go crimson" , "crimson" , "don't have greek life" , "no greek life" , "greek life" , "which house is the best" , "party" , "parties" ,  "stuff","things","whatever", "nothing" , " " };
 		//responses = new String[] {"Did you mean Harvard? Yeah go Harvard! " , "What's good with you? You mispelled Crimson." , "Right on!!!" , "You've been brainwashed to epic proportions " , " " ,  };
+		
+		footballGame = new String[] {"Harvard", "yale", "football game" };
+		footballPositive = new String[] {"good", "great", "amazing", "terrific" };
+		footballNegative = new String[] {"awful", "horrible", "bad"  };
+		
+		places = new String[] {"Boston", "Cambridge"};
+		placePositive = new String[] {"beautiful", "amazing", "fun", "pretty," , "great"};
+		placeNegative = new String[] {"ugly", "disgusting", "bad", "gross" };
+		
+		food = new String[] {"Annenberg" , "Restaurant" , "Cafe"};
+		foodPositive = new String[] {"great", "good", "delicious", "scrumptious", "yummy", "yum"};
+		foodNegative = new String[] {"horrible", "disgusting", "bad", "gross"};
+		
 		goodbyeKeyword= "bye";
 		secretKeyword= "pug";
 		response = "";
+		
+		emotion = 0;
 	}
 
+	public int getEmotion(){
+		
+		return emotion;
+		
+	}
+	
+	public void setEmotion(int x) {
+		
+		emotion = x;
+		
+	}
+	
 	public void talk(String response)
 	{
 		
@@ -37,16 +80,13 @@ public class ChatbotAliceK implements Topic {
 		*/
 		
 		
-		for( String keyword : keywords ) {
-			if( response.contains( secretKeyword ))
-			{
-				ChatbotMain.print("I cant even. I love pugs so much. Wow. You are so cool.");
-			}
-			else if( response.contains( keyword )) {
+		A: for( String keyword : keywords ) {
+
+			if(ChatbotMain.findKeyword(response, keyword,0 ) >= 0) {
 				switch( keyword ) {
-				case "stuff": ChatbotMain.print(" Yeah, some stuff man");  break;
-				case "whatever": ChatbotMain.print(" Talk more specifically, not just whatever"); break;
-				case "go yale" : ChatbotMain.print(" Did you mean Harvard? Yeah go Harvard!"); break;
+				case "stuff": ChatbotMain.print(" Yeah, some stuff man");  break A;
+				case "whatever": ChatbotMain.print(" Talk more specifically, not just whatever"); break A;
+				case "go yale" : ChatbotMain.print(" Did you mean Harvard? Yeah go Harvard!"); break A;
 				case "go bulldogs" : ChatbotMain.print("What's good with you? You mispelled Crimson."); break;
 				case "yale sucks" : ChatbotMain.print("Right on!!!"); break;
 				case "harvard   sucks" : ChatbotMain.print("You've been brainwashed to epic proportions"); break;
@@ -65,7 +105,8 @@ public class ChatbotAliceK implements Topic {
 				
 			}
 		}
-		
+	
+	
 		
 	}
 	
