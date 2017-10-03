@@ -16,6 +16,10 @@ public class ChatbotDanielE implements Topic {
 	}
 
 	public void talk(String response) {
+		//if()
+		
+		
+		
 		ChatbotMain.print("Hey. So you want to talk about generic boring things, huh? I love talking about that. So tell me something.");
 		response = ChatbotMain.getInput();
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword,0) == -1) {
@@ -24,6 +28,7 @@ public class ChatbotDanielE implements Topic {
 				response = ChatbotMain.getInput();
 			}else {
 				ChatbotMain.print("Yeah. That's pretty cool. But there are things I like even more. Tell me something else.");
+				response = ChatbotMain.getInput();
 			}
 		}
 		ChatbotMain.print("Well, it was nice talking to you, "+ChatbotMain.chatbot.getUsername()+"!");
@@ -39,6 +44,10 @@ public class ChatbotDanielE implements Topic {
 			}
 		}
 		return false;
+	}
+	
+	public boolean isSad() {
+		
 	}
 
 }
