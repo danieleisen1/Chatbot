@@ -16,9 +16,6 @@ public class ChatbotDanielE implements Topic {
 	}
 
 	public void talk(String response) {
-		//if()
-		
-		
 		
 		ChatbotMain.print("Hey. So you want to talk about generic boring things, huh? I love talking about that. So tell me something.");
 		response = ChatbotMain.getInput();
@@ -35,7 +32,8 @@ public class ChatbotDanielE implements Topic {
 		ChatbotMain.chatbot.startChatting();
 	}
 		
-	
+	// int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion(); CREATING A COPY OF EMOTION
+	//ChatbotMain.chatbot.getAliceK().setEmotion(1);     CHANGING THE EMOTION
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < keywords.length; i++) {
 			//IMPORTANT (on the rubric)
@@ -46,8 +44,12 @@ public class ChatbotDanielE implements Topic {
 		return false;
 	}
 	
-	public boolean isSad() {
+	public boolean danielEisTriggered() {
 		
+	}
+	
+	public int askHowWasHighSchool() {
+		ChatbotMain.print("How );
 	}
 
 }
