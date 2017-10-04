@@ -138,7 +138,20 @@ public class ChatbotAliceK implements Topic {
 				
 				if(response.equals(footballGame[i])) {
 					
-					for(int x=0; x < positive.length ; x++) {
+					if( findWordInArray( response, positive )) {
+						
+						emotionCounter++;
+					
+					}
+					
+					else if(findWordInArray( response, negative )) {
+							
+							emotionCounter--;
+							
+						}
+					
+						
+					 /** for(int x=0; x < positive.length ; x++) {
 						
 						emotionCounter++;
 						
@@ -149,7 +162,7 @@ public class ChatbotAliceK implements Topic {
 						emotionCounter--;
 						
 						
-					}
+					} **/ 
 					
 					if(emotionCounter == -2) {
 						 
@@ -209,6 +222,16 @@ public class ChatbotAliceK implements Topic {
 	
 		
 	}
+	
+	public boolean findWordInArray( String word, String[] array ) {
+	    for( String s : array ) {
+	        if( word.equals( s )) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	
 	
 	public boolean isTriggered(String response)
 	{
