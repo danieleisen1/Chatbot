@@ -41,19 +41,17 @@ public class ChatbotDanielM implements Topic {
 		if(response.equals("ACT"))
 		{
 			ChatbotMain.print("What is your ACT score");
-			actScore = ChatbotMain.getInput();
-		
+				actScore = ChatbotMain.getInput();
+
+			}
 			if(Integer.parseInt(actScore)<=30)
 			{
-				ChatbotMain.print("I think you should retake the test to get into Harvard");
+				ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
 			}
 			if(Integer.parseInt(actScore)>=30)
 			{
-				ChatbotMain.print("You are set to get into Haravrd");
+				ChatbotMain.print("You are on the right track to get into harvard, but what is your GPA ");
 			}
-				
-			
-		}
 			
 		
 			
@@ -68,6 +66,7 @@ public class ChatbotDanielM implements Topic {
 		}
 		
 	}
+	
 	public boolean isTriggered(String response)
 	{
 		for(int i =0;i< keywords.length;i++) 
