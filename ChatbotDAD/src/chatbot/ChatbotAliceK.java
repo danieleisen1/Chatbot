@@ -58,7 +58,7 @@ public class ChatbotAliceK implements Topic {
 		
 		food = new String[] {"Annenberg" , "Restaurant" , "Cafe"};
 		
-		footballEmotions = new String[] { "I can’t speak to imbeciles like you anymore" , "harvard may not be the best at football but at least we’re better than yale" , "harvard is better than yale anyway", "you’re dumb harvard finesses in all that you do",   "harvard is great at football" };
+		footballEmotions = new String[] { "I can’t speak to imbeciles like you anymore" , "you’re dumb harvard finesses in all that you do" , "harvard is better than yale anyway",   "harvard may not be the best at football but at least we’re better than yale", "harvard is great at football" };
 		
 		generalTerms = new String[] {};
 		positive = new String[] {};
