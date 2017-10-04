@@ -2,25 +2,28 @@ package chatbot;
 
 public class ChatbotDanielE implements Topic {
 
-	private String[] keywords;
+	private String mainKeyword;
+	private String[] introKeyword;
 	private String goodbyeKeyword;
-	private String secretKeyword;
+	private String[] hiWords; 
+	private String[] answerArrayToHello;
 	private String response;
 	
 	public ChatbotDanielE() {
-		keywords = new String[] {"classes","class","course","programs","foreign","medicine", "medical","computer",""};
-		
+		mainKeyword = "coursework";
+		introKeyword = new String[] {"classes","class","course","programs","foreign","medicine", "medical","computer",""};
+		answerArrayToHello = new String[] {"Hi, we have already met" + ChatbotMain.chatbot.getUsername() + ".", ChatbotMain.chatbot.getUsername()+"YES! HELLOOOOO","Seriously, you are getting annoying.", "bye" + ChatbotMain.chatbot.getUsername()+"."};
 		goodbyeKeyword = "bye";
-		secretKeyword = "pug";
+		hiWords = new String[] {"hi","hello"};
 		response = "nothing";
 	}
 
 	public void talk(String response) {
 		
-		ChatbotMain.print("Hey. I am the coursework bot. If you want to terminate me, please say 'bye'. Otherwise I can give general information or answer any questions you have.");
+		ChatbotMain.print("Hey. I am the coursework bot. Unlike my counterpart Admissions Bot, I am nice unless you get on my bad side.  If you want to terminate me, please say 'bye'. Otherwise I can give general information or answer any questions you have.");
 		response = ChatbotMain.getInput();
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword,0) == -1) {
-			if(ChatbotMain.findKeyword(response, secretKeyword,0) >= 0) {
+			if(ChatbotMain.findKeyword(response, "Hi",0) >= 0) {
 				ChatbotMain.print("I can't even. I love pugs so much. Wow. You are so cool.");
 				response = ChatbotMain.getInput();
 			}else {
@@ -42,6 +45,12 @@ public class ChatbotDanielE implements Topic {
 			}
 		}
 		return false;
+	}
+	
+	public boolean helloTooMuch(String response) {
+		for(int i=0; i < hiWords.length; i++) {
+			
+		}
 	}
 	
 	/*public boolean danielEisTriggered() {
