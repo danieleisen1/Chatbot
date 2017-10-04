@@ -8,22 +8,27 @@ public class ChatbotAliceK implements Topic {
 	private String response;
 	
 	private String[] footballGame;
-	private String[] footballPositive;
-	private String[] footballNegative;
+//	private String[] footballPositive;
+	//private String[] footballNegative;
 	
 	private String[] places;
-	private String[] placePositive;
-	private String[] placeNegative;
+	//private String[] placePositive;
+	//private String[] placeNegative;
 	
 	private String[] food;
-	private String[] foodPositive;
-	private String[] foodNegative;
+	//private String[] foodPositive;
+	//private String[] foodNegative;
 	
 	private String[] generalTerms;
-	private String[] positiveGeneral;
-	private String[] negativeGeneral;
+	
+	private String[] positive;
+	private String[] negative;
+	
+	private int emotionCounter;
 	
 	private int emotion;
+	
+	private String[] footballEmotions;
 	
 	
 	//private String[] responses;
@@ -41,26 +46,32 @@ public class ChatbotAliceK implements Topic {
 		
 		
 		footballGame = new String[] {"football" , "football game" , "crimson" , "bulldogs"};
-		footballPositive = new String[] {"good", "great", "amazing", "terrific" , "go yale" , "go harvard" ,"go crimson" , "go bulldogs"};
-		footballNegative = new String[] {"awful", "horrible", "bad" , "sucks" };
+		
+		positive = new String[] {"good", "great", "amazing", "terrific" , "go harvard" ,"go crimson" , "beautiful", "amazing", "fun", "pretty" , "delicious", "scrumptious", "yummy", "yum"};
+		
+		negative = new String[] {"go bulldogs" , "go yale", "awful", "horrible", "bad" , "sucks", "ugly", "horrible", "disgusting", "gross"};
+		
 		
 		places = new String[] {"Boston", "Cambridge"};
-		placePositive = new String[] {"beautiful", "amazing", "fun", "pretty," , "great"};
-		placeNegative = new String[] {"ugly", "disgusting", "bad", "gross" };
+		
+
 		
 		food = new String[] {"Annenberg" , "Restaurant" , "Cafe"};
-		foodPositive = new String[] {"great", "good", "delicious", "scrumptious", "yummy", "yum"};
-		foodNegative = new String[] {"horrible", "disgusting", "bad", "gross"};
+		
+		footballEmotions = new String[] { "I can’t speak to imbeciles like you anymore" , "harvard may not be the best at football but at least we’re better than yale" , "harvard is better than yale anyway", "you’re dumb harvard finesses in all that you do",   "harvard is great at football" };
 		
 		generalTerms = new String[] {};
-		positiveGeneral = new String[] {};
-		negativeGeneral = new String[] {};
+		positive = new String[] {};
+		negative = new String[] {};
+		
 		
 		goodbyeKeyword= "bye";
 		secretKeyword= "pug";
 		response = "";
 		
 		emotion = 0;
+		
+		emotionCounter = 0;
 	}
 
 	public int getEmotion(){
@@ -121,6 +132,31 @@ public class ChatbotAliceK implements Topic {
 				}
 				
 			}
+			
+			for(int i=0 ; i <footballGame.length ; i++ ) {
+				
+				if(response.equals(footballGame[i])) {
+					
+					for(int x=0; x < positive.length ; x++) {
+						
+						emotionCounter++;
+				
+						ChatbotMain.print("Yeah! GO HARVARD ");
+						
+					}
+					
+					for(int y=0; y < negative.length ; y++) {
+						
+						emotionCounter--;
+						
+						
+						
+					}
+					
+				}
+				
+			}
+			
 		}
 	
 	
