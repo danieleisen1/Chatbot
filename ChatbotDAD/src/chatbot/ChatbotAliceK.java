@@ -36,7 +36,7 @@ public class ChatbotAliceK implements Topic {
 	public ChatbotAliceK() {
 		
 		//sort through keywords, if a word is in keywords, go to the other array that its in 
-		keywords = new String[] { "football game" , "boston" , "cambridge" , "annenberg" , "restaurant" , "cafe" , "go harvard" , "go yale" , "go crimson" , "go bulldogs", 
+		keywords = new String[] { "football game" , "football" ,  "boston" , "cambridge" , "annenberg" , "restaurant" , "cafe" , "go harvard" , "go yale" , "go crimson" , "go bulldogs", 
 				
 			
 				
