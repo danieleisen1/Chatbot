@@ -6,6 +6,8 @@ public class ChatbotDanielM implements Topic {
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String response;
+	private String ACT;
+	private int act1;
 
 	public ChatbotDanielM() {
 		String[] temp = {"ACT","SAT","GPA", "grades","essays","essay", "supplement","financial aid","acceptance rate","regular admissions","early admission" };
@@ -13,6 +15,8 @@ public class ChatbotDanielM implements Topic {
 		goodbyeKeyword= "bye";
 		secretKeyword= "pug";
 		response = "";
+		ACT = "";
+		act1 = 0;
 	}
 
 	public void talk(String response)
@@ -32,15 +36,32 @@ public class ChatbotDanielM implements Topic {
 		ChatbotMain.print("Well , it was nice talking to you, "+ChatbotMain.chatbot.getUsername()+"!");
 		ChatbotMain.chatbot.startChatting();
 		 */
-		for( String keyword : keywords ) {
-		if( response.contains( keyword )) {
+		ChatbotMain.print("Did you take an ACT test or SAT test");
+		if(ChatbotMain.findKeyword(response,"ACT", 0) >=0)
+		{
+			ChatbotMain.print("What is your ACT score");
+			response = ACT;
+			int act1 = Integer.parseInt(ACT);
+			if(act1<=30)
+			{
+				ChatbotMain.print("I think you should retake the test to get into Harvard");
+			}
+				
+			
+		};
+			
+		
+			
+			for( String keyword : keywords ) {
+		if(ChatbotMain.findKeyword(response,keyword, 0) >=0) {
 				switch( keyword ) {
-				case "stuff": ChatbotMain.print(" Alice: Yeah, some stuff man");  break;
-				case "whatever": ChatbotMain.print("Alice: Talk more specifically, not just whatever");  break;
+				case "stuff": ChatbotMain.print(" ");  break;
+				case "whatever": ChatbotMain.print("");  break;
 				}
 
 			}
 		}
+		
 	}
 	public boolean isTriggered(String response)
 	{
