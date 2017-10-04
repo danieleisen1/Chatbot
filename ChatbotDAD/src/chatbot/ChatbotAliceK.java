@@ -170,31 +170,28 @@ public class ChatbotAliceK implements Topic {
 						
 					}
 					
-					else {
-						
+					else
 						if(emotionCounter == -1) {
 						
 							ChatbotMain.print(footballEmotions[1]);  
 							
 						}
 						
-						else {
-							
-							if(emotionCounter == 0) {
+						else 
+						  if(emotionCounter == 0) {
 								
 								ChatbotMain.print(footballEmotions[2]);  
 								
 							}
 							
-							else {
-								
+							else 
 								if(emotionCounter == 1) {
 									
 									ChatbotMain.print(footballEmotions[3]); 
 									
 								}
 								
-								else {
+								else 
 									
 									if(emotionCounter == 2) {
 										
@@ -211,17 +208,17 @@ public class ChatbotAliceK implements Topic {
 						}	
 					}
 					
-				}
 				
-			}
+				
 			
-		}
+			
+		
 	
 	
 	  
 	
 		
-	}
+	
 	
 	public boolean findWordInArray( String word, String[] array ) {
 	    for( String s : array ) {
