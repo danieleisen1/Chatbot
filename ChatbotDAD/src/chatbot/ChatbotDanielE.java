@@ -8,8 +8,8 @@ public class ChatbotDanielE implements Topic {
 	private String response;
 	
 	public ChatbotDanielE() {
-		String[] temp = {"dane_stuff","dane_things","dane_whatever","dane_nothing"};
-		keywords = temp;
+		keywords = new String[] {"classes","class","course","programs","foreign","medicine", "medical","computer",""};
+		
 		goodbyeKeyword = "bye";
 		secretKeyword = "pug";
 		response = "nothing";
@@ -17,7 +17,7 @@ public class ChatbotDanielE implements Topic {
 
 	public void talk(String response) {
 		
-		ChatbotMain.print("Hey. So you want to talk about generic boring things, huh? I love talking about that. So tell me something.");
+		ChatbotMain.print("Hey. I am the coursework bot. If you want to terminate me, please say 'bye'. Otherwise I can give general information or answer any questions you have.");
 		response = ChatbotMain.getInput();
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword,0) == -1) {
 			if(ChatbotMain.findKeyword(response, secretKeyword,0) >= 0) {
@@ -38,18 +38,18 @@ public class ChatbotDanielE implements Topic {
 		for(int i = 0; i < keywords.length; i++) {
 			//IMPORTANT (on the rubric)
 			if(ChatbotMain.findKeyword(response, keywords[i],0) >= 0){
-				return true;
+				return false;
 			}
 		}
 		return false;
 	}
 	
-	public boolean danielEisTriggered() {
+	/*public boolean danielEisTriggered() {
 		
 	}
 	
 	public int askHowWasHighSchool() {
 		ChatbotMain.print("How );
 	}
-
+*/
 }
