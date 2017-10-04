@@ -40,7 +40,7 @@ public class ChatbotAliceK implements Topic {
 		
 		
 		
-		footballGame = new String[] {"Harvard", "yale", "football game" , "crimson" , "bulldogs"};
+		footballGame = new String[] {"football" , "football game" , "crimson" , "bulldogs"};
 		footballPositive = new String[] {"good", "great", "amazing", "terrific" , "go yale" , "go harvard" ,"go crimson" , "go bulldogs"};
 		footballNegative = new String[] {"awful", "horrible", "bad" , "sucks" };
 		
@@ -123,6 +123,8 @@ public class ChatbotAliceK implements Topic {
 			}
 		}
 	
+	
+	  
 	
 		
 	}
