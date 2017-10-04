@@ -6,7 +6,7 @@ public class Chatbot {
 	private boolean chatting;
 	private Topic danielE;
 	private Topic danielM;
-	private Topic aliceK;
+	private ChatbotAliceK aliceK;
 		
 	public Chatbot() {
 		danielE = new ChatbotDanielE();
@@ -14,6 +14,10 @@ public class Chatbot {
 		aliceK = new ChatbotAliceK();
 		username = "Unknown User";
 		chatting = true; 
+	}
+	
+	public ChatbotAliceK getAlice() {
+		return aliceK;
 	}
 	
 	public String getUsername() {
@@ -32,11 +36,11 @@ public class Chatbot {
 	
 	public void startChatting() {
 		//whenever you print or get input, use these methods
-		ChatbotMain.print("Hi! I am an intelligent machine that cna respond to your input. Tell me your name.");
+		ChatbotMain.print("Hi! I am an intelligent Harvard machine that can respond to any questions you might have. Let's start off by introducting ourselves. I am the HarvardBot5000. What is your name?");
 		username = ChatbotMain.getInput();
 		
 		while(chatting) {
-			ChatbotMain.print("What would you like to talk about");
+			ChatbotMain.print("What would you like to talk about " + username + ". I specialize in admissions, coursework/clubs, and student life!");
 			String response = ChatbotMain.getInput();
 			
 			if(danielE.isTriggered(response)) {
