@@ -53,7 +53,7 @@ public class ChatbotAliceK implements Topic {
 		
 		
 		places = new String[] {"Boston", "Cambridge"};
-		
+				
 
 		
 		food = new String[] {"Annenberg" , "Restaurant" , "Cafe"};
@@ -207,17 +207,6 @@ public class ChatbotAliceK implements Topic {
 							
 						}	
 					}
-					
-				
-				
-			
-			
-		
-	
-	
-	  
-	
-		
 	
 	
 	public boolean findWordInArray( String word, String[] array ) {
