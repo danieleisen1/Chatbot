@@ -58,7 +58,8 @@ public class ChatbotAliceK implements Topic {
 		
 		food = new String[] {"Annenberg" , "Restaurant" , "Cafe"};
 		
-		footballEmotions = new String[] { "I can’t speak to imbeciles like you anymore" , "you’re dumb harvard finesses in all that you do" , "harvard is better than yale anyway",   "harvard may not be the best at football but at least we’re better than yale", "harvard is great at football" };
+		footballEmotions = new String[] { "I can’t speak to imbeciles like you anymore" , "you’re dumb harvard finesses in all that you do" , "The harvard vs yale football game is so fun to watch at least" , "harvard may not be the best at football but at least we’re better than yale", "harvard is great at football" };
+		        
 		
 		generalTerms = new String[] {};
 		positive = new String[] {};
@@ -140,8 +141,6 @@ public class ChatbotAliceK implements Topic {
 					for(int x=0; x < positive.length ; x++) {
 						
 						emotionCounter++;
-				
-						ChatbotMain.print("Yeah! GO HARVARD ");
 						
 					}
 					
@@ -150,7 +149,53 @@ public class ChatbotAliceK implements Topic {
 						emotionCounter--;
 						
 						
+					}
+					
+					if(emotionCounter == -2) {
+						 
+						ChatbotMain.print(footballEmotions[0]);   
 						
+					}
+					
+					else {
+						
+						if(emotionCounter == -1) {
+						
+							ChatbotMain.print(footballEmotions[1]);  
+							
+						}
+						
+						else {
+							
+							if(emotionCounter == 0) {
+								
+								ChatbotMain.print(footballEmotions[2]);  
+								
+							}
+							
+							else {
+								
+								if(emotionCounter == 1) {
+									
+									ChatbotMain.print(footballEmotions[3]); 
+									
+								}
+								
+								else {
+									
+									if(emotionCounter == 2) {
+										
+										ChatbotMain.print(footballEmotions[4]); 
+										
+									}
+									
+								}
+								
+								
+							}
+							
+							
+						}	
 					}
 					
 				}
