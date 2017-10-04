@@ -108,13 +108,13 @@ public class ChatbotAliceK implements Topic {
 		*/
 		
 		
-		A: for( String keyword : keywords ) {
+		 for( String keyword : keywords ) {
 
 			if(ChatbotMain.findKeyword(response, keyword,0 ) >= 0) {
 				switch( keyword ) {
-				case "stuff": ChatbotMain.print(" What kind of stuff? Food? ");  break A;
-				case "whatever": ChatbotMain.print(" Talk more specifically, not just whatever"); break A;
-				case "go yale" : ChatbotMain.print(" Did you mean Harvard? Yeah go Harvard!"); break A;
+				case "stuff": ChatbotMain.print(" What kind of stuff? Food? ");  break;
+				case "whatever": ChatbotMain.print(" Talk more specifically, not just whatever"); break;
+				case "go yale" : ChatbotMain.print(" Did you mean Harvard? Yeah go Harvard!"); break;
 				case "go bulldogs" : ChatbotMain.print("What's good with you? You mispelled Crimson."); break;
 				case "yale sucks" : ChatbotMain.print("Right on!!!"); break;
 				//case "harvard   sucks" : ChatbotMain.print("You've been brainwashed to epic proportions"); break;
@@ -130,7 +130,7 @@ public class ChatbotAliceK implements Topic {
 				case "parties" : ChatbotMain.print("Party?!!! Yeah don't worry we have those. "); break;
 				case "harvard" : ChatbotMain.print("The greatest school in the world, what would you like to talk about regarding Harvard? "); break;
 
-				}
+				} break;
 				
 			}
 			
@@ -163,6 +163,8 @@ public class ChatbotAliceK implements Topic {
 						
 						
 					} **/ 
+					
+					
 					
 					if(emotionCounter == -2) {
 						 
