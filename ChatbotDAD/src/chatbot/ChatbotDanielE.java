@@ -38,19 +38,19 @@ public class ChatbotDanielE implements Topic {
 	// int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion(); CREATING A COPY OF EMOTION
 	//ChatbotMain.chatbot.getAliceK().setEmotion(1);     CHANGING THE EMOTION
 	public boolean isTriggered(String response) {
-		for(int i = 0; i < keywords.length; i++) {
+//		for(int i = 0; i < keywords.length; i++) {
 			//IMPORTANT (on the rubric)
-			if(ChatbotMain.findKeyword(response, keywords[i],0) >= 0){
+//			if(ChatbotMain.findKeyword(response, keywords[i],0) >= 0){
 				return false;
-			}
-		}
-		return false;
+	//		}
+	//	}
+	//	return false;
 	}
 	
-	public boolean helloTooMuch(String response) {
-		for(int i=0; i < hiWords.length; i++) {
+	//public boolean helloTooMuch(String response) {
+//		for(int i=0; i < hiWords.length; i++) {
 			
-		}
+	//	}
 	}
 	
 	/*public boolean danielEisTriggered() {
@@ -61,4 +61,4 @@ public class ChatbotDanielE implements Topic {
 		ChatbotMain.print("How );
 	}
 */
-}
+//}

@@ -133,7 +133,7 @@ public class ChatbotAliceK implements Topic {
 				} break;
 				
 			}
-			
+			 
 			for(int i=0 ; i <footballGame.length ; i++ ) {
 				
 				if(response.equals(footballGame[i])) {
