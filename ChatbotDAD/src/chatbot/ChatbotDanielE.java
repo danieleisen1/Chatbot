@@ -12,7 +12,7 @@ public class ChatbotDanielE implements Topic {
 	public ChatbotDanielE() {
 		mainKeyword = "coursework";
 		introKeyword = new String[] {"classes","class","course","programs","foreign","medicine", "medical","computer",""};
-		answerArrayToHello = new String[] {"Hi, we have already met" + ChatbotMain.chatbot.getUsername() + ".", ChatbotMain.chatbot.getUsername()+"YES! HELLOOOOO","Seriously, you are getting annoying.", "bye" + ChatbotMain.chatbot.getUsername()+"."};
+		answerArrayToHello = new String[] {"Hi, we have already met", "YES! HELLOOOOO","Seriously, you are getting annoying.", "bye" +"."};
 		goodbyeKeyword = "bye";
 		hiWords = new String[] {"hi","hello"};
 		response = "nothing";
@@ -38,13 +38,13 @@ public class ChatbotDanielE implements Topic {
 	// int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion(); CREATING A COPY OF EMOTION
 	//ChatbotMain.chatbot.getAliceK().setEmotion(1);     CHANGING THE EMOTION
 	public boolean isTriggered(String response) {
-//		for(int i = 0; i < keywords.length; i++) {
+		for(int i = 0; i < introKeyword.length; i++) {
 			//IMPORTANT (on the rubric)
-//			if(ChatbotMain.findKeyword(response, keywords[i],0) >= 0){
+			if(ChatbotMain.findKeyword(response, introKeyword[i],0) >= 0){
 				return false;
-	//		}
-	//	}
-	//	return false;
+			}
+		}
+		return false;
 	}
 	
 	//public boolean helloTooMuch(String response) {
