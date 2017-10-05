@@ -23,10 +23,10 @@ public class Chatbot {
 		return username;
 	}
 	
-	public ChatbotAliceK getDanielE() {
+	public ChatbotDanielE getDanielE() {
 		return danielE;
 	}
-	public ChatbotAliceK getDanielM() {
+	public ChatbotDanielM getDanielM() {
 		return danielM;
 	}
 	public ChatbotAliceK getAlice() {
