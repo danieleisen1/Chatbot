@@ -68,7 +68,7 @@ public class Chatbot {
 							chatting= true;
 							danielM.talk("");
 						}
-						else if(responseCont.equals("3")) {
+						else if(responseCont.equals("3") || responseCont.equals("student life")) {
 							chatting= true;
 							aliceK.talk("");
 						}

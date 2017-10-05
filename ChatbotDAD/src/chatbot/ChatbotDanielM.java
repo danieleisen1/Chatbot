@@ -42,7 +42,6 @@ public class ChatbotDanielM implements Topic {
 		{
 			ChatbotMain.print("What is your ACT score");
 				actScore = ChatbotMain.getInput();
-
 			}
 			if(Integer.parseInt(actScore)<=30)
 			{
