@@ -7,7 +7,8 @@ public class ChatbotDanielM implements Topic {
 	private String secretKeyword;
 	private String response;
 	private int actScore;
-	private String currentEmotion;
+	private int satScore;
+	private int currentEmotion;
 
 	public ChatbotDanielM() {
 		String[] temp = {"ACT","SAT","GPA", "grades","essays","essay", "supplement","financial aid","acceptance rate","regular admissions","early admission" };
@@ -16,7 +17,7 @@ public class ChatbotDanielM implements Topic {
 		secretKeyword= "pug";
 		response = "";
 	
-		act1 = 0;
+	
 	}
 
 	public void talk(String response)
@@ -38,12 +39,12 @@ public class ChatbotDanielM implements Topic {
 		 */
 		ChatbotMain.print("Hey, this is the admission bot and I have a few questions for you about getting into Harvard. First, Did you take an ACT test or SAT test?");
 		response = ChatbotMain.getInput();
-		if(response.equals("ACT"))
+		if(response.equals("ACT") || response.equals("act"))
 		{
 			ChatbotMain.print("What is your ACT score");
 				actScore = ChatbotMain.getIntegerInput();
 
-			}
+			
 			if(actScore<=30)
 			{
 				ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
@@ -52,8 +53,22 @@ public class ChatbotDanielM implements Topic {
 			{
 				ChatbotMain.print("You are on the right track to get into harvard, but what is your GPA ");
 			}
+		}	
+		if(response.equals("SAT") || response.equals("sat"))
+		{
+			ChatbotMain.print("What is your SAT score");
+				satScore = ChatbotMain.getIntegerInput();
+
 			
-		
+			if(satScore<=1400)
+			{
+				ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
+			}
+			if(satScore>=30)
+			{
+				ChatbotMain.print("You are on the right track to get into harvard, but what is your GPA ");
+			}
+		}
 			
 			for( String keyword : keywords ) {
 		if(ChatbotMain.findKeyword(response,keyword, 0) >=0) {
