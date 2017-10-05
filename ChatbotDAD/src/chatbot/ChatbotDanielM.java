@@ -8,7 +8,7 @@ public class ChatbotDanielM implements Topic {
 	private String response;
 	private int actScore;
 	private int satScore;
-	private String currentEmotion;
+	private int currentEmotion;
 
 	public ChatbotDanielM() {
 		String[] temp = {"ACT","SAT","GPA", "grades","essays","essay", "supplement","financial aid","acceptance rate","regular admissions","early admission" };
@@ -79,7 +79,7 @@ public class ChatbotDanielM implements Topic {
 
 			}
 		}
-			String currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion();
+			int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion();
 			//ChatbotMain.chatbot.getAliceK().setEmotion(1);   
 		
 	}
