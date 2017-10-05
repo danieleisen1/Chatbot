@@ -51,7 +51,7 @@ public class ChatbotDanielM implements Topic {
 			}
 			if(actScore>=30)
 			{
-				ChatbotMain.print("You are on the right track to get into harvard, but what is your GPA ");
+				ChatbotMain.print("You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA ");
 			}
 		}	
 		if(response.equals("SAT") || response.equals("sat"))
