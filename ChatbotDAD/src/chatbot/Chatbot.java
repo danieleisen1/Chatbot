@@ -4,10 +4,10 @@ public class Chatbot {
 
 	private String username;
 	private boolean chatting;
-	private boolean properAnswer;
-	private Topic danielE;
-	private Topic danielM;
+	private ChatbotDanielE danielE;
+	private ChatbotDanielM danielM;
 	private ChatbotAliceK aliceK;
+	
 		
 	public Chatbot() {
 		danielE = new ChatbotDanielE();
@@ -15,24 +15,21 @@ public class Chatbot {
 		aliceK = new ChatbotAliceK();
 		username = "Unknown User";
 		chatting = true; 
-		properAnswer=false;
 	}
 	
-	public ChatbotAliceK getAlice() {
-		return aliceK;
-	}
+	
 	
 	public String getUsername() {
 		return username;
 	}
 	
-	public Topic getDanielE() {
+	public ChatbotDanielE getDanielE() {
 		return danielE;
 	}
-	public Topic getDanielM() {
+	public ChatbotDanielM getDanielM() {
 		return danielM;
 	}
-	public Topic getAliceK() {
+	public ChatbotAliceK getAliceK() {
 		return aliceK;
 	}
 	
@@ -64,7 +61,7 @@ public class Chatbot {
 							chatting= true;
 							danielE.talk("");
 						}
-						else if(responseCont.equals("2")&& responseCont.equals("admissions") ) {
+						else if(responseCont.equals("2")|| responseCont.equals("admissions") ) {
 							chatting= true;
 							danielM.talk("");
 						}
