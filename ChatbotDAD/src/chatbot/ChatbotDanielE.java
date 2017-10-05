@@ -3,15 +3,17 @@ package chatbot;
 public class ChatbotDanielE implements Topic {
 
 	private String mainKeyword;
-	private String[] introKeyword;
+	private String[] introKeywords;
 	private String goodbyeKeyword;
 	private String[] hiWords; 
 	private String[] answerArrayToHello;
 	private String response;
+	private String introKeyword;
 	
 	public ChatbotDanielE() {
 		mainKeyword = "coursework";
-		introKeyword = new String[] {"classes","class","course","programs","foreign","medicine", "medical","computer",""};
+		//introKeywords = new String[] {"admission","admissions"}
+		//introKeyword = {"classes","class","course","programs","foreign","medicine", "medical","computer",""};
 		answerArrayToHello = new String[] {"Hi, we have already met", "YES! HELLOOOOO","Seriously, you are getting annoying.", "bye" +"."};
 		goodbyeKeyword = "bye";
 		hiWords = new String[] {"hi","hello"};
@@ -38,13 +40,28 @@ public class ChatbotDanielE implements Topic {
 	// int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion(); CREATING A COPY OF EMOTION
 	//ChatbotMain.chatbot.getAliceK().setEmotion(1);     CHANGING THE EMOTION
 	public boolean isTriggered(String response) {
-		for(int i = 0; i < introKeyword.length; i++) {
+		for(int i = 0; i < introKeyword.length(); i++) {
 			//IMPORTANT (on the rubric)
-			if(ChatbotMain.findKeyword(response, introKeyword[i],0) >= 0){
+			if(ChatbotMain.findKeyword(response, introKeywords[i],0) >= 0){
 				return false;
 			}
 		}
 		return false;
+	}
+	
+	public boolean pathTriggered(String response) {
+		for(int i = 0; i < introKeywords.length; i++) {
+			//IMPORTANT (on the rubric)
+			if(ChatbotMain.findKeyword(response, introKeywords[i],0) >= 0){
+				return false;
+			}
+		}
+		return false;
+	}
+	
+	public void toSameCase(String x) {
+		x = ChatbotMain.getInput(); 
+		x = x.toLowerCase();
 	}
 	
 	//public boolean helloTooMuch(String response) {
