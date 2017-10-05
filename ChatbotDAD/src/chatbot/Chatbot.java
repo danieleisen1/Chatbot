@@ -29,7 +29,7 @@ public class Chatbot {
 	public ChatbotDanielM getDanielM() {
 		return danielM;
 	}
-	public ChatbotAliceK getAlice() {
+	public ChatbotAliceK getAliceK() {
 		return aliceK;
 	}
 	
