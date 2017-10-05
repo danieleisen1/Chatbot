@@ -6,7 +6,7 @@ public class ChatbotDanielM implements Topic {
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String response;
-	private String actScore;
+	private int actScore;
 	private int act1;
 
 	public ChatbotDanielM() {
@@ -41,14 +41,14 @@ public class ChatbotDanielM implements Topic {
 		if(response.equals("ACT"))
 		{
 			ChatbotMain.print("What is your ACT score");
-				actScore = ChatbotMain.getInput();
+				actScore = ChatbotMain.getIntegerInput();
 
 			}
-			if(Integer.parseInt(actScore)<=30)
+			if(actScore<=30)
 			{
 				ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
 			}
-			if(Integer.parseInt(actScore)>=30)
+			if(actScore>=30)
 			{
 				ChatbotMain.print("You are on the right track to get into harvard, but what is your GPA ");
 			}
