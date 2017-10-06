@@ -8,6 +8,7 @@ public class ChatbotDanielM implements Topic {
 	private String response;
 	private int actScore;
 	private int satScore;
+	private int gpa;
 	private int currentEmotion;
 
 	public ChatbotDanielM() {
@@ -54,6 +55,17 @@ public class ChatbotDanielM implements Topic {
 			{
 				ChatbotMain.print("You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA ");
 			}
+			gpa = ChatbotMain.getIntegerInput();
+			if(gpa<=90)
+
+			{
+				ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
+			}
+			if(gpa>=90)
+			{
+				ChatbotMain.print("You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA ");
+			}
+			
 		}	
 		if(response.equals("SAT") || response.equals("sat"))
 		{
