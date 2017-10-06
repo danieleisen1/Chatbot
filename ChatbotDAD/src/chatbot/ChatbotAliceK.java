@@ -31,6 +31,8 @@ public class ChatbotAliceK implements Topic {
 	private String[] footballEmotions;
 
 
+	private String[] firstWord;
+	
 	//private String[] responses;
 
 	public ChatbotAliceK() {
@@ -66,6 +68,10 @@ public class ChatbotAliceK implements Topic {
 		negative = new String[] {};
 
 
+		firstWord = new String[] {"3" , "student life" , "studentlife" , "life" , ""};
+		
+		
+		
 		goodbyeKeyword= "bye";
 		secretKeyword= "pug";
 		response = "";
@@ -92,6 +98,8 @@ public class ChatbotAliceK implements Topic {
 
 		//when person preses student life or 3, go here
 		
+		if(response.equals("3") || response.equals("student life")) {
+		
 		ChatbotMain.print("I am the expert of student life at Harvard. The annual Harvard vs Yale game is coming up. Would you like to know more about it?");
 
 		if(response.equals("yes")) {
@@ -105,12 +113,16 @@ public class ChatbotAliceK implements Topic {
 			
 		}
 		
-		// if(!response.equals("yes") && !response.equals("no")) {
+		if(!response.equals("yes") && !response.equals("no")) {
 			
-	//		ChatbotMain.print("I said to answer yes or no. ");
-			//loop back to the original question
-			//ChatbotMain.print("I am the expert of student life at Harvard. The annual Harvard vs Yale game is coming up. Would you like to know more about it?");
-	//	}
+					ChatbotMain.print("I said to answer yes or no. ");
+					//loop back to the original question
+					ChatbotMain.print("I am the expert of student life at Harvard. The annual Harvard vs Yale game is coming up. Would you like to know more about it?");
+				}
+		
+		}
+		
+		// 
 		
 		/**
 		ChatbotMain.print("Hey! So you want to talk about generic boring things, huh? I love talking about that. So tell me something.");
