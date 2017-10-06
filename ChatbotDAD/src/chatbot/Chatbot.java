@@ -42,7 +42,7 @@ public class Chatbot {
 			
 			String response = ChatbotMain.getInput();
 			
-			if(danielE.pathTriggered(response)) {
+			if(danielE.isTriggered(response)) {
 				chatting = true; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				danielE.talk(response);
 			}
@@ -61,7 +61,7 @@ public class Chatbot {
 							chatting= true;
 							danielE.talk("");
 						}
-						else if(responseCont.equals("2")&& responseCont.equals("admissions") ) {
+						else if(responseCont.equals("2") || responseCont.equals("admissions") ) {
 							chatting= true;
 							danielM.talk("");
 						}
