@@ -42,16 +42,11 @@ public class ChatbotDanielM implements Topic {
 		if(response.equals("ACT") || response.equals("act"))
 		{
 			ChatbotMain.print("What is your ACT score");
-<<<<<<< HEAD
-				actScore = ChatbotMain.getInput();
-			}
-			if(Integer.parseInt(actScore)<=30)
-=======
-				actScore = ChatbotMain.getIntegerInput();
 
+				actScore = ChatbotMain.getInput();
 			
 			if(actScore<=30)
->>>>>>> branch 'master' of https://github.com/danieleisen1/Chatbot.git
+
 			{
 				ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
 			}
