@@ -47,9 +47,9 @@ public class ChatbotDanielE implements Topic {
 	// int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion(); CREATING A COPY OF EMOTION
 	//ChatbotMain.chatbot.getAliceK().setEmotion(1);     CHANGING THE EMOTION
 	public boolean isTriggered(String response) {
-		for(int i = 0; i < introKeyword.length(); i++) {
+		for(int i = 0; i < hiWords.length; i++) {
 			//IMPORTANT (on the rubric)
-			if(ChatbotMain.findKeyword(response, introKeywords[i],0) >= 0){
+			if(ChatbotMain.findKeyword(response, hiWords[i],0) >= 0){
 				return false;
 			}
 		}
