@@ -10,6 +10,11 @@ public class ChatbotDanielE implements Topic {
 	private String response;
 	private String introKeyword;
 	
+	
+	
+	private String responseOld;
+	private String responseNew;
+	
 	public ChatbotDanielE() {
 		mainKeyword = "coursework";
 		//introKeywords = new String[] {"admission","admissions"}
@@ -17,13 +22,15 @@ public class ChatbotDanielE implements Topic {
 		answerArrayToHello = new String[] {"Hi, we have already met", "YES! HELLOOOOO","Seriously, you are getting annoying.", "bye" +"."};
 		goodbyeKeyword = "bye";
 		hiWords = new String[] {"hi","hello"};
-		response = "nothing";
+		introKeyword = "nothing";
 	}
 
 	public void talk(String response) {
 		
 		ChatbotMain.print("Hey. I am the coursework bot. Unlike my counterpart Admissions Bot, I am nice unless you get on my bad side.  If you want to terminate me, please say 'bye'. Otherwise I can give general information or answer any questions you have.");
 		response = ChatbotMain.getInput();
+		response.toLowerCase();
+		
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword,0) == -1) {
 			if(ChatbotMain.findKeyword(response, "Hi",0) >= 0) {
 				ChatbotMain.print("I can't even. I love pugs so much. Wow. You are so cool.");
@@ -50,7 +57,7 @@ public class ChatbotDanielE implements Topic {
 	}
 	
 	public boolean pathTriggered(String response) {
-		for(int i = 0; i < introKeywords.length; i++) {
+		for(int i = 0; i < response.length(); i++) {
 			//IMPORTANT (on the rubric)
 			if(ChatbotMain.findKeyword(response, introKeywords[i],0) >= 0){
 				return false;
@@ -59,23 +66,9 @@ public class ChatbotDanielE implements Topic {
 		return false;
 	}
 	
-	public void toSameCase(String x) {
-		x = ChatbotMain.getInput(); 
-		x = x.toLowerCase();
+}
+	/*public void checkIfResponseRepeated(String responseOld,String responseNew) {
+		this.responseOld =   
 	}
 	
-	//public boolean helloTooMuch(String response) {
-//		for(int i=0; i < hiWords.length; i++) {
-			
-	//	}
-	}
-	
-	/*public boolean danielEisTriggered() {
-		
-	}
-	
-	public int askHowWasHighSchool() {
-		ChatbotMain.print("How );
-	}
-*/
-//}
+	*/
