@@ -51,16 +51,7 @@ public class ChatbotDanielM implements Topic {
 			ChatbotMain.print("Ugh that is not the proper format, people enter a number between 0 and 36");
 		}
 		gpa = ChatbotMain.getIntegerInput();
-		if(gpa<=90)
-
-		{
-			ChatbotMain.print("HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard");
-		}
-		if(gpa>=90)
-		{
-			ChatbotMain.print("You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA ");
-		}
-
+		testScore(gpa,90,100,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your essay");
 
 
 		if(response.equals("SAT") || response.equals("sat"))
