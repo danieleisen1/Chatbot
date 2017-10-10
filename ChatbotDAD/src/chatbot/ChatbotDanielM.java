@@ -17,8 +17,8 @@ public class ChatbotDanielM implements Topic {
 		goodbyeKeyword= "bye";
 		secretKeyword= "pug";
 		response = "";
-	
-	
+
+
 	}
 
 	public void talk(String response)
@@ -43,36 +43,32 @@ public class ChatbotDanielM implements Topic {
 		if(response.equals("ACT") || response.equals("act"))
 		{
 			ChatbotMain.print("What is your ACT score");
+			actScore = ChatbotMain.getIntegerInput();
+			testScore(actScore,30, 36,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
+		}
+		else 
+		{
+			ChatbotMain.print("Ugh that is not the proper format, people enter a number between 0 and 36");
+		}
+		gpa = ChatbotMain.getIntegerInput();
+		if(gpa<=90)
 
-				actScore = ChatbotMain.getIntegerInput();
-			
-			if(actScore<=30)
+		{
+			ChatbotMain.print("HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard");
+		}
+		if(gpa>=90)
+		{
+			ChatbotMain.print("You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA ");
+		}
 
-			{
-				ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
-			}
-			if(actScore>=30)
-			{
-				ChatbotMain.print("You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA ");
-			}
-			gpa = ChatbotMain.getIntegerInput();
-			if(gpa<=90)
 
-			{
-				ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
-			}
-			if(gpa>=90)
-			{
-				ChatbotMain.print("You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA ");
-			}
-			
-		}	
+
 		if(response.equals("SAT") || response.equals("sat"))
 		{
 			ChatbotMain.print("What is your SAT score");
-				satScore = ChatbotMain.getIntegerInput();
+			satScore = ChatbotMain.getIntegerInput();
 
-			
+
 			if(satScore<=1400)
 			{
 				ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
@@ -82,9 +78,9 @@ public class ChatbotDanielM implements Topic {
 				ChatbotMain.print("You are on the right track to get into harvard, but what is your GPA ");
 			}
 		}
-			
-			for( String keyword : keywords ) {
-		if(ChatbotMain.findKeyword(response,keyword, 0) >=0) {
+
+		for( String keyword : keywords ) {
+			if(ChatbotMain.findKeyword(response,keyword, 0) >=0) {
 				switch( keyword ) {
 				case "stuff": ChatbotMain.print(" ");  break;
 				case "whatever": ChatbotMain.print("");  break;
@@ -92,8 +88,8 @@ public class ChatbotDanielM implements Topic {
 
 			}
 		}
-			int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion();
-			//ChatbotMain.chatbot.getAliceK().setEmotion(1);   
+		int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion();
+		//ChatbotMain.chatbot.getAliceK().setEmotion(1);   
 		if(currentEmotion==-3)
 		{
 			ChatbotMain.print("Since you hate it so much you are not getting, try for other schools");
@@ -103,7 +99,19 @@ public class ChatbotDanielM implements Topic {
 			ChatbotMain.print("Since you like it so much, I think you should apply");
 		}
 	}
-	
+	public void testScore(int test,int scoreLow, int scoreHigh, String botResponse,String botResponse2)
+	{
+		if(test<=scoreLow)
+
+		{
+			ChatbotMain.print(botResponse);
+		}
+		if(test>=scoreLow && test<=scoreHigh)
+		{
+			ChatbotMain.print(botResponse2);
+		}
+	}
+
 	public boolean isTriggered(String response)
 	{
 		for(int i =0;i< keywords.length;i++) 
