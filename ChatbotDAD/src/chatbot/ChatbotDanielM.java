@@ -94,7 +94,14 @@ public class ChatbotDanielM implements Topic {
 		}
 			int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion();
 			//ChatbotMain.chatbot.getAliceK().setEmotion(1);   
-		
+		if(currentEmotion==-3)
+		{
+			ChatbotMain.print("Since you hate it so much you are not getting, try for other schools");
+		}
+		if(currentEmotion==3)
+		{
+			ChatbotMain.print("Since you like it so much, I think you should apply");
+		}
 	}
 	
 	public boolean isTriggered(String response)
