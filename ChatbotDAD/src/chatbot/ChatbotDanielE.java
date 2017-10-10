@@ -12,7 +12,7 @@ public class ChatbotDanielE implements Topic {
 	
 	public ChatbotDanielE() {
 		mainKeyword = "coursework";
-		//introKeywords = new String[] {"admission","admissions"}
+		introKeywords = new String[] {"courswork","classwork","course","class","classes"};
 		//introKeyword = {"classes","class","course","programs","foreign","medicine", "medical","computer",""};
 		answerArrayToHello = new String[] {"Hi, we have already met", "YES! HELLOOOOO","Seriously, you are getting annoying.", "bye" +"."};
 		goodbyeKeyword = "bye";
@@ -43,17 +43,17 @@ public class ChatbotDanielE implements Topic {
 		for(int i = 0; i < hiWords.length; i++) {
 			//IMPORTANT (on the rubric)
 			if(ChatbotMain.findKeyword(response, hiWords[i],0) >= 0){
-				return false;
+				return true;
 			}
 		}
 		return false;
 	}
 	
 	public boolean pathTriggered(String response) {
+		response = response.toLowerCase();
 		for(int i = 0; i < introKeywords.length; i++) {
-			//IMPORTANT (on the rubric)
 			if(ChatbotMain.findKeyword(response, introKeywords[i],0) >= 0){
-				return false;
+				return true;
 			}
 		}
 		return false;
