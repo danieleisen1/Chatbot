@@ -39,56 +39,64 @@ public class ChatbotDanielM implements Topic {
 		ChatbotMain.chatbot.startChatting();
 		 */
 		ChatbotMain.print("Hey, this is the admission bot and I have a few questions for you about getting into Harvard. First, Did you take an ACT test or SAT test?");
+		ChatbotMain.print("Say bye if you dont want to talk anymore");
 		response = ChatbotMain.getInput();
-		if(response.equals("ACT") || response.equals("act"))
+		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
 		{
-			ChatbotMain.print("What is your ACT score");
-			actScore = ChatbotMain.getIntegerInput();
-			testScore(actScore,30, 36,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
-		}
-		else 
-		{
-			ChatbotMain.print("Ugh that is not the proper format, people enter a number between 0 and 36");
-		}
-		gpa = ChatbotMain.getIntegerInput();
-		testScore(gpa,90,100,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your essay");
-
-
-		if(response.equals("SAT") || response.equals("sat"))
-		{
-			ChatbotMain.print("What is your SAT score");
-			satScore = ChatbotMain.getIntegerInput();
-
-
-			if(satScore<=1400)
+			if(response.equals("ACT") || response.equals("act"))
 			{
-				ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
+				ChatbotMain.print("What is your ACT score");
+				actScore = ChatbotMain.getIntegerInput();
+				testScore(actScore,30, 36,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
 			}
-			if(satScore>=30)
+			else 
 			{
-				ChatbotMain.print("You are on the right track to get into harvard, but what is your GPA ");
+				ChatbotMain.print("Ugh that is not the proper format, people enter a number between 0 and 36");
 			}
-		}
+			gpa = ChatbotMain.getIntegerInput();
+			testScore(gpa,90,100,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your essay");
 
-		for( String keyword : keywords ) {
-			if(ChatbotMain.findKeyword(response,keyword, 0) >=0) {
-				switch( keyword ) {
-				case "stuff": ChatbotMain.print(" ");  break;
-				case "whatever": ChatbotMain.print("");  break;
+
+			if(response.equals("SAT") || response.equals("sat"))
+			{
+				ChatbotMain.print("What is your SAT score");
+				satScore = ChatbotMain.getIntegerInput();
+
+
+				if(satScore<=1400)
+				{
+					ChatbotMain.print("HAHAHAHA, You are the worst. Retake it immediatly if you wanna go to Harvard");
 				}
+				if(satScore>=30)
+				{
+					ChatbotMain.print("You are on the right track to get into harvard, but what is your GPA ");
+				}
+			}
 
+
+
+			for( String keyword : keywords ) {
+				if(ChatbotMain.findKeyword(response,keyword, 0) >=0) {
+					switch( keyword ) {
+					case "stuff": ChatbotMain.print(" ");  break;
+					case "whatever": ChatbotMain.print("");  break;
+					}
+
+				}
+			}
+			int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion();
+			//ChatbotMain.chatbot.getAliceK().setEmotion(1);   
+			if(currentEmotion==-3)
+			{
+				ChatbotMain.print("Since you hate it so much you are not getting, try for other schools");
+			}
+			if(currentEmotion==3)
+			{
+				ChatbotMain.print("Since you like it so much, I think you should apply");
 			}
 		}
-		int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion();
-		//ChatbotMain.chatbot.getAliceK().setEmotion(1);   
-		if(currentEmotion==-3)
-		{
-			ChatbotMain.print("Since you hate it so much you are not getting, try for other schools");
-		}
-		if(currentEmotion==3)
-		{
-			ChatbotMain.print("Since you like it so much, I think you should apply");
-		}
+		ChatbotMain.print("Thanks for the talk "+ChatbotMain.chatbot.getUsername());
+		ChatbotMain.chatbot.startChatting();
 	}
 	public void testScore(int test,int scoreLow, int scoreHigh, String botResponse,String botResponse2)
 	{
