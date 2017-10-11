@@ -62,9 +62,19 @@ public class ChatbotMain {
 		return false;
 	}
 	
-	
+	 public static boolean noNegations(String s, int psn){
+		  String not = "not";
+		  String no = "no";
+		  if(psn == 0) {
+			  return true;
+		  }
+		  if(psn > 3 && not.equals(s.substring(psn-4,psn-1)) || no.equals(s.substring(psn-3, psn-1))) {
+			  return false;
+		  }
+		  return true;
+	  }
 
-	public static boolean noNegations(String s, int psn){
+	public static boolean noNegationsAlice(String s, int psn){
 		String [] tokens = s.split(" ");
 		for (String token : tokens) {
 			if (token.toUpperCase().equals("NO") || token.toUpperCase().equals("NOT")) {

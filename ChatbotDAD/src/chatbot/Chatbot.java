@@ -43,15 +43,15 @@ public class Chatbot {
 			String response = ChatbotMain.getInput();
 			
 			if(danielE.pathTriggered(response) || response.equals( "1" )) {
-				chatting = true; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				danielE.talk(response);
 			}
 			else if(danielM.isTriggered(response) || response.equals( "2") ) {
-				chatting = true; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				danielM.talk(response);
 			}
 			else if(aliceK.isTriggered(response) || response.equals( "3" )) {
-				chatting = true; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				aliceK.talk(response);
 			}
 			else {
