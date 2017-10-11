@@ -131,7 +131,7 @@ public class ChatbotMain {
 	}
 
 	public static int getIntegerInput() {
-		print("Please enter an integer.");
+		//print("Please enter an integer.");
 		String integerString = getInput();
 		boolean isInteger = false;
 		int value = 0;

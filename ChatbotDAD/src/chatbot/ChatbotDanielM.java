@@ -43,11 +43,11 @@ public class ChatbotDanielM implements Topic {
 		response = ChatbotMain.getInput();
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
 		{
-			if(response.equals("ACT") || response.equals("act"))
+			if(ChatbotMain.findKeyword(response,"act", 0) >=0)
 			{
 				ChatbotMain.print("What is your ACT score");
 				actScore = ChatbotMain.getIntegerInput();
-				testScore(actScore,30, 36,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
+				testScore(actScore,30, 36,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, what is your GPA", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
 			}
 			else 
 			{
