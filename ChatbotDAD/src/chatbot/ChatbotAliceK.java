@@ -34,13 +34,13 @@ public class ChatbotAliceK implements Topic {
 
 
 	private String[] firstWord;
-	
+
 	//private String[] responses;
 
 	public ChatbotAliceK() {
 
 		//sort through keywords, if a word is in keywords, go to the other array that its in 
-		keywords = new String[] { "football game" , "football" ,  "boston" , "cambridge" , "annenberg" , "restaurant" , "cafe" , "go harvard" , "go yale" , "go crimson" , "go bulldogs", 
+		keywords = new String[] { "student life" , "3" , "sure" , "ok" , "okay", "no" , "nah" , "na",  "studentlife" , "life" ,  "football game" , "football" ,  "boston" , "cambridge" , "annenberg" , "restaurant" , "cafe" , "go harvard" , "go yale" , "go crimson" , "go bulldogs", 
 
 
 
@@ -70,10 +70,10 @@ public class ChatbotAliceK implements Topic {
 		negative = new String[] {};
 
 
-		firstWord = new String[] {"3" , "student life" , "studentlife" , "life" , ""};
-		
-		
-		
+		//firstWord = new String[] {  "3"};
+
+
+
 		goodbyeKeyword= "bye";
 		secretKeyword= "pug";
 		response = "";
@@ -95,60 +95,44 @@ public class ChatbotAliceK implements Topic {
 
 	}
 
-	public void talk(String response)
-	{
+	/**
+	 @param response in order to avoid hijacking of conversations by individual chatbot, each chatbot will do only ONE request/response and will hand over control to the main loop
+	 in Chatbot.java.
+	 userRequest is the string that user enters, and it is read ONLY in main loop in Chatbot.java.
+	 The objective of talk( String userRequest ) is to identify the keywords present in userRequest and based on them,  print response and exit talk() method immediately.
+	 This way the next userRequest will come in soon, as new call to this talk() method.
+	 */
+	public void talk(String response) {
+	
+		for( String s : keywords ) {
 
-		//when person preses student life or 3, go here
-		
-		if(response.equals("3") || response.equals("student life")) {
-		
-		ChatbotMain.print("I am the expert of student life at Harvard. The annual Harvard vs Yale game is coming up. Would you like to know more about it?");
-
-		if(response.equals("yes")) {
-			
-			
-		}
-		
-		else if(response.equals("no")) {
-			
-			ChatbotMain.print("Okay, well would you like to know about other Harvard traditions?");
-			
-		}
-		
-		if(!response.equals("yes") && !response.equals("no")) {
-			
-					ChatbotMain.print("I said to answer yes or no. ");
-					//loop back to the original question
-					ChatbotMain.print("I am the expert of student life at Harvard. The annual Harvard vs Yale game is coming up. Would you like to know more about it?");
+			if(ChatbotMain.findKeyword(response, s, 0 ) >= 0) {
+				// System.out.println( "inside the if");
+				//	System.out.println( "DEBUG in Alice's talk() findWord() succeeded, response=" + response);
+				
+				
+				if(s.equals("student life") || s.equals("3") || s.equals("student") || s.equals("life")) {
+				
+				ChatbotMain.print("I am the expert of student life at Harvard. The annual Harvard vs Yale game is coming up. Would you like to know more about it?");
+				
+				return;
 				}
-		
-		}
-		
-		// 
-		
-		/**
-		ChatbotMain.print("Hey! So you want to talk about generic boring things, huh? I love talking about that. So tell me something.");
-		response = ChatbotMain.getInput();
-		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
-		{
-			if(ChatbotMain.findKeyword(response, secretKeyword, 0) >=0)
-			{
-				ChatbotMain.print("I cant even. I love pugs so much. Wow. You are so cool.");
-			}else
-			{
-				ChatbotMain.print("Yeah. Thats pretty cool. But there are thins I like even more. Tell me something else.");
-			}
-		}
-		ChatbotMain.print("Well , it was nice talking to you, "+ChatbotMain.chatbot.getUsername()+"!");
-		ChatbotMain.chatbot.startChatting();
-		 */
+				else if(s.equals("yes") || s.equals("sure") || s.equals("ok") || s.equals("okay")  ) {
+				return;
+				
+				}
+				else if(s.equalsIgnoreCase("no") || s.equalsIgnoreCase("na") || s.equalsIgnoreCase("nah")) {
+					ChatbotMain.print("Okay, well would you like to know about other Harvard traditions?");
+					
+					
+				//	System.out.println( "DEBUG inside the no" );
+				return;
+				
+				}
+			
 
-
-		for( String keyword : keywords ) {
-
-			if(ChatbotMain.findKeyword(response, keyword,0 ) >= 0) {
-				switch( keyword ) {
-				case "stuff": ChatbotMain.print(" What kind of stuff? Food? ");  break;
+				switch( s ) {
+				case "stuff": ChatbotMain.print(" What kind of stuff? Food? ");  return;
 				case "whatever": ChatbotMain.print(" Talk more specifically, not just whatever"); break;
 				case "go yale" : ChatbotMain.print(" Did you mean Harvard? Yeah go Harvard!"); break;
 				case "go bulldogs" : ChatbotMain.print("What's good with you? You mispelled Crimson."); break;
@@ -166,35 +150,38 @@ public class ChatbotAliceK implements Topic {
 				case "parties" : ChatbotMain.print("Party?!!! Yeah don't worry we have those. "); break;
 				case "harvard" : ChatbotMain.print("The greatest school in the world, what would you like to talk about regarding Harvard? "); break;
 
-				} break;
+				
 
 			}
+		}
+		}
+/*
+		for(int i=0 ; i <footballGame.length ; i++ ) {
 
-			for(int i=0 ; i <footballGame.length ; i++ ) {
+			if(userRequest.equals(footballGame[i])) {
 
-				if(response.equals(footballGame[i])) {
+				if( findWordInArray( "harvard" + userRequest, positive ) || findWordInArray( "yale" + userRequest, negative ))  {
 
-					if( findWordInArray( "harvard" + response, positive ) || findWordInArray( "yale" + response, negative ))  {
+					emotionCounter++;
 
-						emotionCounter++;
-
-					}
-
-					else if( findWordInArray( "harvard" + response, negative ) || findWordInArray( "yale" + response, positive )) {
-
-						emotionCounter--;
-
-					}
-				//	System.err.println("it's working");
-					ChatbotMain.print(footballEmotions[emotionCounter + 2 ]);  
 				}
 
+				else if( findWordInArray( "harvard" + userRequest, negative ) || findWordInArray( "yale" + userRequest, positive )) {
 
+					emotionCounter--;
+
+				}
+				//	System.err.println("it's working");
+				ChatbotMain.print(footballEmotions[emotionCounter + 2 ]);  
 			}
 
 
-		}	
+		}
+		*/
+		
 	}
+
+
 
 
 	public boolean findWordInArray( String word, String[] array ) {
@@ -209,8 +196,9 @@ public class ChatbotAliceK implements Topic {
 
 	public boolean isTriggered(String response)
 	{
+		//System.out.println( "DEBUG triggered function response" + response);
 
-		for(int i =0;i< keywords.length;i++) 
+		for(int i =0;i< keywords.length-1;i++) 
 		{
 			if(ChatbotMain.findKeyword(response, keywords[i], 0)>=0)
 			{

@@ -23,18 +23,26 @@ public class ChatbotMain {
 	
 	public static int findKeyword(String searchString, String keyword, int startPsn) {
 		//make lowercase
+		
+		//System.out.println( "DEBUG in findkeyword: searchString=" + searchString + " keyword=" + keyword );
+		
 		searchString = searchString.toLowerCase();
 		keyword = keyword.toLowerCase();		
 		
 		int psn = searchString.indexOf(keyword, startPsn);
 		
 		while(psn >= 0) {
-			if(keywordIsIsolated(psn,keyword,searchString) && noNegations(searchString, psn)) {
+			if(keywordIsIsolated(psn,keyword,searchString) && (noNegations(searchString, psn) || searchString.equalsIgnoreCase("no"))) {
+				//System.out.println( "DEBUG findKeyword found!");
 				return psn;
 			}else {
 				psn=searchString.indexOf(keyword, psn+1);//returns the index of the NEXT keyword
+				// System.out.println( "DEBUG inside else response" +  searchString.indexOf(keyword, psn+1) );
 			}
 		}
+		
+	//	System.out.println( "DEBUG findKeyword NOT NOT NOT NOT NOT NOT found!");
+		
 		return -1;
 				
 	}
@@ -55,21 +63,20 @@ public class ChatbotMain {
 	}
 	
 	
-	 public static boolean noNegations(String s, int psn){
-		  String not = "not";
-		  String no = "no";
-		  if(psn == 0) {
-			  return true;
-		  }
-		  if(psn > 3 && not.equals(s.substring(psn-4,psn-1)) || no.equals(s.substring(psn-3, psn-1))) {
-			  return false;
-		  }
-		  return true;
-	  }
+
+	public static boolean noNegations(String s, int psn){
+		String [] tokens = s.split(" ");
+		for (String token : tokens) {
+			if (token.toUpperCase().equals("NO") || token.toUpperCase().equals("NOT")) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 
 	public static String getInput(){
-		return inputSource.nextLine();
+		return inputSource.nextLine().trim();
 	}
 
 	public static void print(String s){
@@ -78,7 +85,7 @@ public class ChatbotMain {
 
 	public static void multiLinePrint(String s){
 		String printString = "";
-		int cutoff = 300;
+		int cutoff = 150;
 		//this while loop last as long as there are words left in the original String
 		while(s.length() > 0){
 

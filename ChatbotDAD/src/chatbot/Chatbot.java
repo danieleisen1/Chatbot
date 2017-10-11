@@ -42,34 +42,21 @@ public class Chatbot {
 			
 			String response = ChatbotMain.getInput();
 			
-			if(danielE.pathTriggered(response)) {
+			/** if(danielE.pathTriggered(response) || response.equals( "1" )) {
 				chatting = true; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				danielE.talk(response);
 			}
-			else if(danielM.isTriggered(response)) {
+			else */ if(danielM.isTriggered(response) || response.equals( "2") ) {
 				chatting = true; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				danielM.talk(response);
 			}
-			else if(aliceK.isTriggered(response)) {
+			else if(aliceK.isTriggered(response) || response.equals( "3" )) {
 				chatting = true; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				aliceK.talk(response);
 			}
 			else {
 					ChatbotMain.print("I see you may not know how to spell. Please enter 1 for coursework, 2 for admissions, 3 for student life.");
-					String responseCont = ChatbotMain.getInput();
-						if(responseCont.equals("1")) {
-							chatting= true;
-							danielE.talk("");
-						}
-						else if(responseCont.equals("2") || responseCont.equals("admissions") ) {
-							chatting= true;
-							danielM.talk("");
-						}
-						else if(responseCont.equals("3") || responseCont.equals("student life")) {
-							chatting= true;
-							aliceK.talk("");
-						}
-				
+					continue;
 				
 			}
 		}
