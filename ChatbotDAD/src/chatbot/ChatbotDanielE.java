@@ -1,4 +1,8 @@
 package chatbot;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class ChatbotDanielE implements Topic {
 
@@ -6,8 +10,10 @@ public class ChatbotDanielE implements Topic {
 	private String[] pathKeywords;
 	private String terminateKeyword;
 	
-	private String[] keyArray;
-	
+	private String oldResponse;
+	private String newResponse;
+
+	private boolean beginChat;
 	
 	private String[] hiWords; 
 	private String[] answerArrayToHello;
@@ -18,43 +24,41 @@ public class ChatbotDanielE implements Topic {
 		pathKeywords = new String[] {"coursework","classwork","course","class","classes"};
 		introKeywords = new String[] {"class size","degrees","degree"};
 		terminateKeyword = "bye";
+        oldResponse = "";
+        beginChat = true;
 		
-		//introKeyword = {"classes","class","course","programs","foreign","medicine", "medical","computer",""};
 		
 		hiWords = new String[] {"hi","hello"};
 		response = "nothing";
 	}
 
 	public void talk(String response) {
-		
-		ChatbotMain.print("Hey. I am the coursework bot. Unlike my counterpart Admissions Bot, I am nice unless you get on my bad side.  If you want to terminate me, please say 'bye'. Otherwise I can give general information or answer any questions you have. Ask about our average class sizes, freedom of degrees and concentrations, or fun facts!");
+		if(beginChat == true) {
+			ChatbotMain.print("Hey " + ChatbotMain.chatbot.getUsername() + ". I am the coursework bot. Unlike my emotional counterpart bots, I am nice unless you annoy me with the same question.  If you want to terminate me, please say 'bye'. Otherwise I can give general information or answer any questions you have. Ask about our average class sizes, freedom of degrees and concentrations, or fun facts!");
+			beginChat = false; 
+		}
+		else if(response.equals("")) {
+			ChatbotMain.print("Can you ask me something else?");
+		}
 		response = ChatbotMain.getInput();
+		newResponse = response.toLowerCase();
 		while(ChatbotMain.findKeyword(response, terminateKeyword,0) == -1) {
 			if(isTriggered(response, introKeywords)) {
-				if((ChatbotMain.findKeyword(response, "class size",0) >= 0)) {
+				if((ChatbotMain.findKeyword(response, "class sizes",0) >= 0) || (ChatbotMain.findKeyword(response, "class size",0) >= 0)) {
 					ChatbotMain.print("Our student:faculty ratio is 7:1 with an average class of under 40 students");
 					
 				}
 				else if ((ChatbotMain.findKeyword(response, "degree",0) >= 0)||(ChatbotMain.findKeyword(response, "degrees",0) >= 0)) {
-					
-				}
 				
 				
-				
-				response = ChatbotMain.getInput();
 			}
 			else {
-				ChatbotMain.print("Sorry I did not understand your question. Ironically, I am a dumb Harvard bot. Please say - restart - to reboot me.");
-				response = ChatbotMain.getInput().toLowerCase();
-				if(ChatbotMain.findKeyword(response, "restart", 0) >= 0) {
-					
-				}
-				else {
-					ChatbotMain.print("type restart");
-				}
+				ChatbotMain.print("Sorry I did not understand your input you wrote: " + newResponse + ". Ironically, I am still a dumb Harvard bot.");
+				talk("");
 			}
-		}
+			}
 		ChatbotMain.print("Well, it was nice talking to you, "+ ChatbotMain.chatbot.getUsername() + "!");
+		}
 	}
 		
 	// int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion(); CREATING A COPY OF EMOTION
@@ -74,16 +78,26 @@ public class ChatbotDanielE implements Topic {
 		return isTriggered(response, pathKeywords);
 	}
 	
-	public void toSameCase(String x) {
-		x = ChatbotMain.getInput(); 
-		x = x.toLowerCase();
-	}
-
-	@Override
 	public boolean isTriggered(String response) {
 		return isTriggered(response, pathKeywords);
 	}
 	
+	
+	public void checkIfRepeat(String oldResponse, String newResponse) {
+		String[] allOldWords = oldResponse.split(" ");
+		String[] allNewWords = newResponse.split(" ");
+		int count = 0;
+		for(int i = 0; i < allNewWords.length; i++) {
+			for(int x = 0; i < allOldWords.length; i++) {
+				if(allOldWords[x].equals(allNewWords[i])){
+					count = count + 1;
+				}
+			}
+		}
+		if(count > (allNewWords.length + allOldWords.length) / 3) {
+			ChatbotMain.print("Please enter something else. Your last input is very similar to this one.");
+		}
+	}
 	//public boolean helloTooMuch(String response) {
 //		for(int i=0; i < hiWords.length; i++) {
 			
