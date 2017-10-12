@@ -57,13 +57,24 @@ public class ChatbotMain {
 			return true;
 		
 		else if(s.substring(psn + keyword.length() + 1).equals(keyword + " "))
-			return true;
+			return true;   
 		
 		return false;
 	}
 	
 	 public static boolean noNegations(String s, int psn){
-		  String not = "not";
+		 
+		 if(chatbot.getWorkFlow() != 1 && chatbot.getWorkFlow() != 2 ) {
+			 
+			 return noNegationsAlice(s, psn);
+			 
+		 }
+		 
+		  return danielNoNegation(s, psn);
+	  }
+
+	private static boolean danielNoNegation(String s, int psn) {
+		String not = "not";
 		  String no = "no";
 		  if(psn == 0) {
 			  return true;
@@ -72,7 +83,7 @@ public class ChatbotMain {
 			  return false;
 		  }
 		  return true;
-	  }
+	}
 
 	public static boolean noNegationsAlice(String s, int psn){
 		String [] tokens = s.split(" ");
@@ -82,7 +93,7 @@ public class ChatbotMain {
 			}
 		}
 		return true;
-	}
+	} 
 
 
 	public static String getInput(){

@@ -7,7 +7,8 @@ public class Chatbot {
 	private ChatbotDanielE danielE;
 	private ChatbotDanielM danielM;
 	private ChatbotAliceK aliceK;
-	
+	private static int workflow = 0;
+	// 1=danielE 2=danielM 3-aliceK
 		
 	public Chatbot() {
 		danielE = new ChatbotDanielE();
@@ -38,21 +39,46 @@ public class Chatbot {
 		ChatbotMain.print("Hi! I am an intelligent Harvard machine that can respond to any questions you might have. Let's start off by introducting ourselves. I am the HarvardBot5000. What is your name?");
 		username = ChatbotMain.getInput();
 		ChatbotMain.print("What would you like to talk about " + username + ". I specialize in coursework, admissions, and student life!");
-		while(chatting) {
+		
+		while( chatting ) {
+			
+			System.out.println( "DEBUG Chatbot main event loop -- about to read user's string" );
 			
 			String response = ChatbotMain.getInput();
 			
+			workflow = 0;
+			
+			
 			if(danielE.pathTriggered(response) || response.equals( "1" )) {
+				
+				workflow=1;
+				
+				System.out.println( "DEBUG going into DanielE talk() ");
+				
 				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				danielE.talk(response);
+				
 			}
 			else if(danielM.isTriggered(response) || response.equals( "2") ) {
+				
+				workflow=2;
+				
+				System.out.println( "DEBUG going into DanielM talk() ");
+				
 				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				danielM.talk(response);
+				
 			}
 			else if(aliceK.isTriggered(response) || response.equals( "3" )) {
-				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+			//else if(aliceK.isTriggered(response)) {
+				
+				System.out.println( "DEBUG going into AliceK talk() ");
+				
+				workflow =3;
+				
+				chatting = true; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				aliceK.talk(response);
+				
 			}
 			else {
 					ChatbotMain.print("I see you may not know how to spell. Please enter 1 for coursework, 2 for admissions, 3 for student life.");
@@ -60,6 +86,13 @@ public class Chatbot {
 				
 			}
 		}
+		
+	}
+
+
+
+	public static int getWorkFlow() {
+		return workflow;
 	}
 
 }

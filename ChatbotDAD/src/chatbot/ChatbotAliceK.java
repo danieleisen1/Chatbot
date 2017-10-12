@@ -40,7 +40,7 @@ public class ChatbotAliceK implements Topic {
 	public ChatbotAliceK() {
 
 		//sort through keywords, if a word is in keywords, go to the other array that its in 
-		keywords = new String[] { "student life" , "3" , "sure" , "ok" , "okay", "no" , "nah" , "na",  "studentlife" , "life" ,  "football game" , "football" ,  "boston" , "cambridge" , "annenberg" , "restaurant" , "cafe" , "go harvard" , "go yale" , "go crimson" , "go bulldogs", 
+		keywords = new String[] {"yes" , "okay" , "sure" , "ok" , "student life" , "3" , "sure" , "ok" , "okay", "no" , "nah" , "na",  "studentlife" , "life" ,  "football game" , "football" ,  "boston" , "cambridge" , "annenberg" , "restaurant" , "cafe" , "go harvard" , "go yale" , "go crimson" , "go bulldogs", 
 
 
 
@@ -49,9 +49,9 @@ public class ChatbotAliceK implements Topic {
 
 
 
-		footballGame = new String[] {"football" , "football game" , "crimson" , "bulldogs"};
+		footballGame = new String[] {"yes" , "football" , "football game" , "crimson" , "bulldogs", "Bulldogs"};
 
-		positive = new String[] {"good", "great", "amazing", "terrific" , "go harvard" ,"go crimson" , "beautiful", "amazing", "fun", "pretty" , "delicious", "scrumptious", "yummy", "yum"};
+		positive = new String[] {"good", "great", "amazing", "terrific" , "go" ,"go crimson" , "beautiful", "amazing", "fun", "pretty" , "delicious", "scrumptious", "yummy", "yum"};
 
 		negative = new String[] {"go bulldogs" , "go yale", "awful", "horrible", "bad" , "sucks", "ugly", "horrible", "disgusting", "gross"};
 
@@ -62,12 +62,7 @@ public class ChatbotAliceK implements Topic {
 
 		food = new String[] {"Annenberg" , "Restaurant" , "Cafe"};
 
-		footballEmotions = new String[] { "I can't speak to imbeciles like you anymore" , "you're dumb harvard finesses in all that you do" , "The Harvard vs Yale football game is a longstanding tradition. Harvard wins almost every year because Yale sucks at football, just like they do everything else. What's your opinion on how Harvard is at football? " , "harvard may not be the best at football but at least we're better than yale", "harvard is great at football" };
-
-
-		generalTerms = new String[] {};
-		positive = new String[] {};
-		negative = new String[] {};
+		footballEmotions = new String[] { "I can't speak to imbeciles like you anymore" , "you're dumb harvard finesses in all that you do" , "The Harvard vs Yale football game is a longstanding tradition. Harvard wins almost every year because Yale sucks at football, just like they do everything else. What's your opinion on how Harvard is at football? " , "harvard may not be the best at football but at least we're better than yale", "harvard is great at football" }; 
 
 
 		//firstWord = new String[] {  "3"};
@@ -94,6 +89,74 @@ public class ChatbotAliceK implements Topic {
 		emotion = x;
 
 	}
+	
+	protected boolean isFootballGame( String response ) {
+		for(int i=0 ; i <footballGame.length ; i++ ) {
+			System.out.println("DEBUG in footballGame for loop ");
+			
+			// if(response.equals(footballGame[i])) {
+			if(ChatbotMain.findKeyword( response, footballGame[i], 0 ) >= 0) {
+
+				System.out.println(" DEBUG in first if");
+			
+				System.out.println("DEBUG printing response after first if  " + response);
+				
+				System.out.println("DEBUG printing footballGame[i] after first if  " + footballGame[i]);
+				
+				//	System.err.println("it's working");
+				
+				//System.out.println("DEBUG  " + footballEmotions[emotionCounter + 2 ]);
+				ChatbotMain.print( footballEmotions[ emotionCounter+2 ] );  
+				
+				return true;
+			}
+		}
+		System.out.println("DEBUG exited footbgallgame loop");
+		return false;
+	}
+	
+	private boolean isPositiveEmotions( String response ) {
+		for(int i=0 ; i <positive.length ; i++ ) {
+			// if(response.equals(footballGame[i])) {
+			System.out.println(" DEBUG in postiive for loop");
+
+			if( ChatbotMain.findKeyword( response, positive[i], 0 ) >= 0 &&
+				ChatbotMain.findKeyword( response, "harvard", 0 ) >= 0 ) {
+				++emotionCounter;
+			}
+
+			if( ChatbotMain.findKeyword( response, positive[i], 0 ) >= 0 &&
+				ChatbotMain.findKeyword( response, "yale", 0 ) >= 0 ) {
+				--emotionCounter;
+			}
+
+			ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isNegativeEmotions( String response ) {
+		for(int i=0 ; i <negative.length ; i++ ) {
+			// if(response.equals(footballGame[i])) {
+			System.out.println(" DEBUG in negative for loop");
+
+			if( ChatbotMain.findKeyword( response, negative[i], 0 ) >= 0 &&
+				ChatbotMain.findKeyword( response, "harvard", 0 ) >= 0 ) {
+				--emotionCounter;
+			}
+
+			if( ChatbotMain.findKeyword( response, negative[i], 0 ) >= 0 &&
+				ChatbotMain.findKeyword( response, "yale", 0 ) >= 0 ) {
+				++emotionCounter;
+			}
+
+			ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+			return true;
+		}
+		return false;
+	}
+	
 
 	/**
 	 @param response in order to avoid hijacking of conversations by individual chatbot, each chatbot will do only ONE request/response and will hand over control to the main loop
@@ -103,82 +166,59 @@ public class ChatbotAliceK implements Topic {
 	 This way the next userRequest will come in soon, as new call to this talk() method.
 	 */
 	public void talk(String response) {
-	
+		
+		System.out.println("DEBUG Welcome to AliceK talk()");
+		
 		for( String s : keywords ) {
 
 			if(ChatbotMain.findKeyword(response, s, 0 ) >= 0) {
-				// System.out.println( "inside the if");
-				//	System.out.println( "DEBUG in Alice's talk() findWord() succeeded, response=" + response);
-				
-				
 				if(s.equals("student life") || s.equals("3") || s.equals("student") || s.equals("life")) {
-				
-				ChatbotMain.print("I am the expert of student life at Harvard. The annual Harvard vs Yale game is coming up. Would you like to know more about it?");
-				
-				return;
+					ChatbotMain.print("I am the expert of student life at Harvard. The annual Harvard vs Yale game is coming up. Type in whoever you're rooting for, Harvard Crimson or Yale Bulldogs.");
+					return;
 				}
 				else if(s.equals("yes") || s.equals("sure") || s.equals("ok") || s.equals("okay")  ) {
-				return;
-				
+					ChatbotMain.print("The Harvard vs. Yale football game is a longstanding tradition. Harvard wins every year though, of course. ");
+					return;
 				}
 				else if(s.equalsIgnoreCase("no") || s.equalsIgnoreCase("na") || s.equalsIgnoreCase("nah")) {
 					ChatbotMain.print("Okay, well would you like to know about other Harvard traditions?");
-					
-					
-				//	System.out.println( "DEBUG inside the no" );
-				return;
-				
+					//	System.out.println( "DEBUG inside the no" );
+					return;
 				}
-			
+
+		
+
+		if( isFootballGame( response )) return;
+
+		if( isPositiveEmotions( response )) return;
+		
+		if( isNegativeEmotions( response )) return;
+
+		System.out.println("DEBUG justbefore keywords");
+
+		
 
 				switch( s ) {
 				case "stuff": ChatbotMain.print(" What kind of stuff? Food? ");  return;
-				case "whatever": ChatbotMain.print(" Talk more specifically, not just whatever"); break;
-				case "go yale" : ChatbotMain.print(" Did you mean Harvard? Yeah go Harvard!"); break;
-				case "go bulldogs" : ChatbotMain.print("What's good with you? You mispelled Crimson."); break;
-				case "yale sucks" : ChatbotMain.print("Right on!!!"); break;
+				case "whatever": ChatbotMain.print(" Talk more specifically, not just whatever"); return;
+				case "go yale" : ChatbotMain.print(" Did you mean Harvard? Yeah go Harvard!"); return;
+				case "go bulldogs" : ChatbotMain.print("What's good with you? You mispelled Crimson."); return;
+				case "yale sucks" : ChatbotMain.print("Right on!!!"); return;
 				//case "harvard   sucks" : ChatbotMain.print("You've been brainwashed to epic proportions"); break;
 				//	case "harvard is bad" : ChatbotMain.print("If bad means good then totally! Harvard is bad."); break;
 				//	case "harvard sucks at football" : ChatbotMain.print("At least our students get into graduate school"); break;
 				//	case "harvard is bad at footbal" : ChatbotMain.print("Not like you're any better"); break;
 				case "john harvard" : ChatbotMain.print("John Harvard did not actually found Harvard! There are three main myths about John Harvard's statue in the Harvard Yard. 1) It isn't actually John Harvard 2) John Harvard isn't the founder of Harvard, even though 'founder' is engraved on the statue 3) Harvard was founded in 1636, not 1638, as the engraving on the statue claims."); break;
 				// 	case "annenberg is great" : ChatbotMain.print("Not like you're any better"); break;
-				case "go crimson" : ChatbotMain.print("Yeah!!!! GO CRIMSON"); break;
+				case "go crimson" : ChatbotMain.print("Yeah!!!! GO CRIMSON"); return;
 				//	case "go harvard" : ChatbotMain.print("Yeah!!!! GO HARVARD"); break;
-				case "which house is the best": ChatbotMain.print("Yeah!!!! GO CRIMSON"); break;
-				case "party" : ChatbotMain.print("Party?!!! Yeah don't worry we have those. "); break;
-				case "parties" : ChatbotMain.print("Party?!!! Yeah don't worry we have those. "); break;
-				case "harvard" : ChatbotMain.print("The greatest school in the world, what would you like to talk about regarding Harvard? "); break;
-
-				
-
+				case "which house is the best": ChatbotMain.print("Yeah!!!! GO CRIMSON"); return;
+				case "party" : ChatbotMain.print("Party?!!! Yeah don't worry we have those. "); return;
+				case "parties" : ChatbotMain.print("Party?!!! Yeah don't worry we have those. "); return;
+				case "harvard" : ChatbotMain.print("The greatest school in the world, what would you like to talk about regarding Harvard? "); return;
+				}
 			}
 		}
-		}
-/*
-		for(int i=0 ; i <footballGame.length ; i++ ) {
-
-			if(userRequest.equals(footballGame[i])) {
-
-				if( findWordInArray( "harvard" + userRequest, positive ) || findWordInArray( "yale" + userRequest, negative ))  {
-
-					emotionCounter++;
-
-				}
-
-				else if( findWordInArray( "harvard" + userRequest, negative ) || findWordInArray( "yale" + userRequest, positive )) {
-
-					emotionCounter--;
-
-				}
-				//	System.err.println("it's working");
-				ChatbotMain.print(footballEmotions[emotionCounter + 2 ]);  
-			}
-
-
-		}
-		*/
-		
 	}
 
 
@@ -196,15 +236,45 @@ public class ChatbotAliceK implements Topic {
 
 	public boolean isTriggered(String response)
 	{
-		//System.out.println( "DEBUG triggered function response" + response);
+		System.out.println( "DEBUG Welcome to AliceK.isTriggered() response=" + response);
 
-		for(int i =0;i< keywords.length-1;i++) 
+		for(int i =0;i< keywords.length;i++) 
 		{
 			if(ChatbotMain.findKeyword(response, keywords[i], 0)>=0)
 			{
+				System.out.println( "Returning TRUE from AliceK.isTriggered()");
 				return true;
 			}
 		}
+		
+		for(int i =0;i< positive.length;i++) 
+		{
+			if(ChatbotMain.findKeyword(response, positive[i], 0)>=0)
+			{
+				System.out.println( "Returning TRUE from AliceK.isTriggered()");
+				return true;
+			}
+		}
+		
+		for(int i =0;i< negative.length;i++) 
+		{
+			if(ChatbotMain.findKeyword(response, negative[i], 0)>=0)
+			{
+				System.out.println( "Returning TRUE from AliceK.isTriggered()");
+				return true;
+			}
+		}
+		
+		for(int i =0;i< footballGame.length;i++) 
+		{
+			if(ChatbotMain.findKeyword(response, footballGame[i], 0)>=0)
+			{
+				System.out.println( "Returning TRUE from AliceK.isTriggered()");
+				return true;
+			}
+		}
+		
+		System.out.println( "Returning false from AliceK.isTriggered()");
 		return false;
 
 		/*
@@ -226,3 +296,29 @@ public class ChatbotAliceK implements Topic {
 
 
 }
+
+
+/**
+for(int i=0 ; i <negative.length ; i++ ) {
+	// if(response.equals(footballGame[i])) {
+	if(ChatbotMain.findKeyword( response, negative[i], 0 ) >= 0) {
+
+		System.out.println("in first if");
+	
+		System.out.println("printing response after first if  " + response);
+		
+		System.out.println("printing footballGame[i] after first if  " + footballGame[i]);
+		
+		// response="go harvard"
+		// find( "harvardgo harvard" )
+		
+
+		
+		//	System.err.println("it's working");
+		
+		//System.out.println("DEBUG  " + footballEmotions[emotionCounter + 2 ]);
+		  
+		
+	}
+}
+*/
