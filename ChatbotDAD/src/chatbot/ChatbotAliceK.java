@@ -40,16 +40,16 @@ public class ChatbotAliceK implements Topic {
 	public ChatbotAliceK() {
 
 		//sort through keywords, if a word is in keywords, go to the other array that its in 
-		keywords = new String[] {"yes" , "okay" , "sure" , "ok" , "student life" , "3" , "sure" , "ok" , "okay", "no" , "nah" , "na",  "studentlife" , "life" ,  "football game" , "football" ,  "boston" , "cambridge" , "annenberg" , "restaurant" , "cafe" , "go harvard" , "go yale" , "go crimson" , "go bulldogs", 
+		keywords = new String[] {"yes" , "okay" , "sure" , "ok" , "student life" , "3" , "sure" , "ok" , "okay", "no" , "nah" , "na",  "studentlife" , "life" ,  "boston" , "cambridge" , "annenberg" , "restaurant" , "cafe" , "go harvard" , "go yale" , "go crimson" , 
 
 
 
-				"yale sucks", "harvard sucks" , "harvard vs yale football game" , "football game" , "yale vs harvard football game" , "harvard yale football game" , "yale harvard football game" , "harvard will win" , "harvard always win" , "yale will win" , "yale always wins" , "john harvard" , "annenberg" , "food" , "charles river" , "boston" , "cambridge" ,  "go crimson" , "crimson" , "don't have greek life" , "no greek life" , "greek life" , "which house is the best" , "party" , "parties" ,  "stuff","things","whatever", "nothing" , " " };
+				"yale sucks", "harvard sucks" , "harvard vs yale football game" , "harvard always win" , "yale will win" , "yale always wins" , "john harvard" , "annenberg" , "food" , "charles river" , "boston" , "cambridge" ,  "go crimson" , "crimson" , "don't have greek life" , "no greek life" , "greek life" , "which house is the best" , "party" , "parties" ,  "stuff","things","whatever", "nothing" , " " };
 		//responses = new String[] {"Did you mean Harvard? Yeah go Harvard! " , "What's good with you? You mispelled Crimson." , "Right on!!!" , "You've been brainwashed to epic proportions " , " " ,  };
 
 
 
-		footballGame = new String[] {"yes" , "football" , "football game" , "crimson" , "bulldogs", "Bulldogs"};
+		footballGame = new String[] {"yes" , "football" , "football game" , "crimson" , "bulldogs", "Bulldogs", "harvard crimson" , "yale bulldogs"};
 
 		positive = new String[] {"good", "great", "amazing", "terrific" , "go" ,"go crimson" , "beautiful", "amazing", "fun", "pretty" , "delicious", "scrumptious", "yummy", "yum"};
 
@@ -62,7 +62,10 @@ public class ChatbotAliceK implements Topic {
 
 		food = new String[] {"Annenberg" , "Restaurant" , "Cafe"};
 
-		footballEmotions = new String[] { "I can't speak to imbeciles like you anymore" , "you're dumb harvard finesses in all that you do" , "The Harvard vs Yale football game is a longstanding tradition. Harvard wins almost every year because Yale sucks at football, just like they do everything else. What's your opinion on how Harvard is at football? " , "harvard may not be the best at football but at least we're better than yale", "harvard is great at football" }; 
+		footballEmotions = new String[] { "I can't speak to imbeciles like you anymore" ,
+				"you're dumb harvard finesses in all that you do" ,
+				"The Harvard vs Yale football game is a longstanding tradition. Harvard wins almost every year because Yale sucks at football, just like they do everything else. What's your opinion on how Harvard is at football? " , "harvard may not be the best at football but at least we're better than yale", 
+				"harvard is great at football" }; 
 
 
 		//firstWord = new String[] {  "3"};
@@ -95,7 +98,7 @@ public class ChatbotAliceK implements Topic {
 			System.out.println("DEBUG in footballGame for loop ");
 			
 			// if(response.equals(footballGame[i])) {
-			if(ChatbotMain.findKeyword( response, footballGame[i], 0 ) >= 0) {
+			if( findWordInString( response, footballGame[i] )) {
 
 				System.out.println(" DEBUG in first if");
 			
@@ -105,7 +108,7 @@ public class ChatbotAliceK implements Topic {
 				
 				//	System.err.println("it's working");
 				
-				//System.out.println("DEBUG  " + footballEmotions[emotionCounter + 2 ]);
+				System.out.println("DEBUG about to print football emotionCounter = " + emotionCounter );
 				ChatbotMain.print( footballEmotions[ emotionCounter+2 ] );  
 				
 				return true;
@@ -115,23 +118,41 @@ public class ChatbotAliceK implements Topic {
 		return false;
 	}
 	
+	boolean findWordInString( String searchString, String key ) {
+		return searchString.contains( key );
+	}
+	
 	private boolean isPositiveEmotions( String response ) {
 		for(int i=0 ; i <positive.length ; i++ ) {
 			// if(response.equals(footballGame[i])) {
-			System.out.println(" DEBUG in postiive for loop");
+			System.out.println(" DEBUG in postiive for loop ");
 
+			/** THIS SHOULD WORK WELL ON 'harvard good' but doesn't.  Experimenting with S.contains() below.
 			if( ChatbotMain.findKeyword( response, positive[i], 0 ) >= 0 &&
 				ChatbotMain.findKeyword( response, "harvard", 0 ) >= 0 ) {
-				++emotionCounter;
+				*/
+			
+			/** and S.contains of course works */
+			if( findWordInString( response, positive[i] ) &&
+					findWordInString( response, "harvard" )) {	
+			
+				emotionCounter++;
+				
+				System.out.println("trying to find the emotioncounter" + emotionCounter);
+				ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+				return true;
 			}
 
-			if( ChatbotMain.findKeyword( response, positive[i], 0 ) >= 0 &&
-				ChatbotMain.findKeyword( response, "yale", 0 ) >= 0 ) {
-				--emotionCounter;
+			if( findWordInString( response, positive[i] ) &&
+				findWordInString( response, "yale" )) {
+				emotionCounter--;
+				
+				System.out.println("trying to find the emotioncounter" + emotionCounter);
+				ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+				return true;
 			}
 
-			ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
-			return true;
+	
 		}
 		return false;
 	}
@@ -141,18 +162,25 @@ public class ChatbotAliceK implements Topic {
 			// if(response.equals(footballGame[i])) {
 			System.out.println(" DEBUG in negative for loop");
 
-			if( ChatbotMain.findKeyword( response, negative[i], 0 ) >= 0 &&
-				ChatbotMain.findKeyword( response, "harvard", 0 ) >= 0 ) {
-				--emotionCounter;
+			if( findWordInString( response, negative[i] ) &&
+					findWordInString( response, "harvard" )) {
+				emotionCounter--;
+				
+				System.out.println("trying to find the emotioncounter" + emotionCounter);
+
+				ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+				return true;
 			}
 
-			if( ChatbotMain.findKeyword( response, negative[i], 0 ) >= 0 &&
-				ChatbotMain.findKeyword( response, "yale", 0 ) >= 0 ) {
-				++emotionCounter;
+			if( findWordInString( response, negative[i] ) &&
+					findWordInString( response, "yale" )) {
+				emotionCounter++;
+				System.out.println("trying to find the emotioncounter" + emotionCounter);
+
+				ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+				return true;
 			}
 
-			ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
-			return true;
 		}
 		return false;
 	}
@@ -168,30 +196,6 @@ public class ChatbotAliceK implements Topic {
 	public void talk(String response) {
 		
 		System.out.println("DEBUG Welcome to AliceK talk()");
-		
-		for( String s : keywords ) {
-
-			if(ChatbotMain.findKeyword(response, s, 0 ) >= 0) {
-				if(s.equals("student life") || s.equals("3") || s.equals("student") || s.equals("life")) {
-					ChatbotMain.print("I am the expert of student life at Harvard. The annual Harvard vs Yale game is coming up. Type in whoever you're rooting for, Harvard Crimson or Yale Bulldogs.");
-					return;
-				}
-				else if(s.equals("yes") || s.equals("sure") || s.equals("ok") || s.equals("okay")  ) {
-					ChatbotMain.print("The Harvard vs. Yale football game is a longstanding tradition. Harvard wins every year though, of course. ");
-					return;
-				}
-				else if(s.equalsIgnoreCase("no") || s.equalsIgnoreCase("na") || s.equalsIgnoreCase("nah")) {
-					ChatbotMain.print("Okay, well would you like to know about other Harvard traditions?");
-					//	System.out.println( "DEBUG inside the no" );
-					return;
-				}
-
-		
-
-		if( isFootballGame( response )) {
-			System.out.println( "DEBUG isFootball returned true, leaving talk()" );
-			return;
-		}
 
 		if( isPositiveEmotions( response )) {
 			System.out.println( "DEBUG isPositive returned true, leaving talk()" );
@@ -202,11 +206,34 @@ public class ChatbotAliceK implements Topic {
 			System.out.println( "DEBUG isNegative returned true, leaving talk()" );
 			return;
 		}
+		
+		if( isFootballGame( response )) {
+			System.out.println( "DEBUG isFootball returned true, leaving talk()" );
+			return;
+		}
 
 		System.out.println("DEBUG justbefore keywords");
+		for( String s : keywords ) {
+			
+			System.out.println("DEBUG in first for");
 
-		
-
+			if( findWordInString(response, s ))  {
+				if(s.equals("student life") || s.equals("3") || s.equals("student") || s.equals("life")) {
+					ChatbotMain.print("I am the expert of student life at Harvard. The annual Harvard vs Yale game is coming up. Type in whoever you're rooting for, Harvard Crimson or Yale Bulldogs.");
+					return;
+				}
+				else if(s.equals("yes") || s.equals("sure") || s.equals("ok") || s.equals("okay")  ) {
+					ChatbotMain.print("The Harvard vs. Yale football game is a longstanding tradition. Harvard wins every year though, of course. ");
+					return;
+				}
+				else if(s.equalsIgnoreCase("no") || s.equalsIgnoreCase("na") || s.equalsIgnoreCase("nah")) {
+					ChatbotMain.print("Okay, well in that case I am of no use. Type in '2' for admissions advice.");
+					//	System.out.println( "DEBUG inside the no" );
+					return;
+				}
+				System.out.println( "before checking if in football game" );
+				System.out.println("DEBUGjust got out of for");
+	
 				switch( s ) {
 				case "stuff": ChatbotMain.print(" What kind of stuff? Food? ");  return;
 				case "whatever": ChatbotMain.print(" Talk more specifically, not just whatever"); return;
@@ -251,7 +278,7 @@ public class ChatbotAliceK implements Topic {
 
 		for(int i =0;i< keywords.length;i++) 
 		{
-			if(ChatbotMain.findKeyword(response, keywords[i], 0)>=0)
+			if(findWordInString(response, keywords[i] ))
 			{
 				System.out.println( "Returning TRUE from AliceK.isTriggered()");
 				return true;
@@ -260,7 +287,7 @@ public class ChatbotAliceK implements Topic {
 		
 		for(int i =0;i< positive.length;i++) 
 		{
-			if(ChatbotMain.findKeyword(response, positive[i], 0)>=0)
+			if(findWordInString(response, positive[i] ))
 			{
 				System.out.println( "Returning TRUE from AliceK.isTriggered()");
 				return true;
@@ -269,7 +296,7 @@ public class ChatbotAliceK implements Topic {
 		
 		for(int i =0;i< negative.length;i++) 
 		{
-			if(ChatbotMain.findKeyword(response, negative[i], 0)>=0)
+			if(findWordInString(response, negative[i] ))
 			{
 				System.out.println( "Returning TRUE from AliceK.isTriggered()");
 				return true;
@@ -278,7 +305,7 @@ public class ChatbotAliceK implements Topic {
 		
 		for(int i =0;i< footballGame.length;i++) 
 		{
-			if(ChatbotMain.findKeyword(response, footballGame[i], 0)>=0)
+			if( findWordInString( response, footballGame[i] ))
 			{
 				System.out.println( "Returning TRUE from AliceK.isTriggered()");
 				return true;
