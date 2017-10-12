@@ -41,7 +41,7 @@ public class Chatbot {
 		ChatbotMain.print("What would you like to talk about " + username + ". I specialize in coursework, admissions, and student life!");
 		
 		while( chatting ) {
-			System.out.println( "DEBUG Chatbot main event loop -- about to read user's string" );
+			//System.out.println( "DEBUG Chatbot about to read user's string" );
 			String response = ChatbotMain.getInput();
 			
 			workflow = 0;
@@ -51,7 +51,7 @@ public class Chatbot {
 
 				workflow=1;
 				
-				System.out.println( "DEBUG going into DanielE talk() ");
+				//System.out.println( "DEBUG going into DanielE talk() ");
 				
 				setChatting(false); //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 
@@ -60,7 +60,7 @@ public class Chatbot {
 			}
 			else if(danielM.isTriggered(response) || response.equals( "2") ) {
 				workflow=2;
-				System.out.println( "DEBUG going into DanielM talk() ");
+				//System.out.println( "DEBUG going into DanielM talk() ");
 				setChatting(false); //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 
 				danielM.talk(response);
@@ -70,7 +70,7 @@ public class Chatbot {
 
 			//else if(aliceK.isTriggered(response)) {
 				
-				System.out.println( "DEBUG going into AliceK talk() ");
+				//System.out.println( "DEBUG going into AliceK talk() ");
 				
 				workflow =3;
 				
