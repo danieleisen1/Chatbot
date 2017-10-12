@@ -19,7 +19,7 @@ public class ChatbotDanielE implements Topic {
 	private String[] classSizeKeys;
 
 	private String[] degreeKeys;
-	
+
 	private String[] agreeKeys;
 
 	
@@ -27,7 +27,7 @@ public class ChatbotDanielE implements Topic {
 		
 		pathKeywords = new String[] {"coursework","classwork","course","class","classes"};
 		
-		introKeywords = new String[] {"class size","degrees","degree"};
+		introKeywords = new String[] {"class size","degrees","degree","major","majors"};
 		
 		terminateKeyword = "bye";
 		
@@ -38,7 +38,7 @@ public class ChatbotDanielE implements Topic {
         classSizeKeys = new String[] {"class size","class", "average", "class sizes","ratio","students"};
         
         degreeKeys = new String[] {"degree","degrees","major","concentration","concentrations","majors","minor","minors"};
-        
+       
         agreeKeys = new String[] {"agreed","agree","sure","ok","fine","good"};
         
 	}
@@ -47,7 +47,7 @@ public class ChatbotDanielE implements Topic {
 		
 		if(beginChat == true) {
 			
-			ChatbotMain.print("Hey " + ChatbotMain.chatbot.getUsername() + ". I am the coursework bot. Unlike my emotional counterpart bots, I am usually nice and I love to play trivia games. If you want to terminate me, please say 'bye'. Otherwise, ask about our average class sizes and freedom of degrees and concentrations!");
+			ChatbotMain.print("Hey " + ChatbotMain.chatbot.getUsername() + ". I am the coursework bot. Unlike my emotional counterpart bots, I am usually nice and I love to play trivia games. If you want to terminate me, please say 'bye'. Otherwise, ask about our average class sizes and freedom of degrees and majors!");
 			beginChat = false; 
 			newResponse = ChatbotMain.getInput();
 			continueTalk(newResponse);
@@ -55,6 +55,7 @@ public class ChatbotDanielE implements Topic {
 		}
 		else if(response.equals("")) {
 			
+			oldResponse = newResponse;
 			ChatbotMain.print("Can you ask me something else?");
 			newResponse = ChatbotMain.getInput().toLowerCase();
 			checkIfRepeat(oldResponse, newResponse);
@@ -103,10 +104,15 @@ public class ChatbotDanielE implements Topic {
 						ChatbotMain.print("Congrats " + ChatbotMain.chatbot.getUsername() + "the answer is 40 students.");
 					
 					}
-					ChatbotMain.print("Would you like me to tell you about our degrees or majors?");
+					ChatbotMain.print("Would you like me to tell you about our degrees and majors?");
 					newResponse = ChatbotMain.getInput().toLowerCase();
 						if(isTriggered(newResponse, agreeKeys)) {
 							continueTalk("degree");
+						}
+						else {
+							ChatbotMain.print("Ok if you don't want to know about that, what would you like to talk about now?");
+							newResponse = ChatbotMain.getInput().toLowerCase();
+							continueTalk(newResponse);
 						}
 				
 				}
@@ -126,7 +132,10 @@ public class ChatbotDanielE implements Topic {
 						ChatbotMain.print("Fun fact: Harvard does not use the term major. Instead it uses concentrations and minors");
 						ChatbotMain.print("Harvard features tons of majors varying from computer science, to biology, to humanities! What interests you?");
 						newResponse = ChatbotMain.getInput().toLowerCase();
-						ChatbotMain.print("Surprisingly Harvard has " + newResponse);
+						ChatbotMain.print("Surprisingly Harvard has that major: " + newResponse + ". In addition we have visual arts, african american studies, antrhopology, asian studies, economics, english, foreign language, history, literature, linguisitics, music studies, philosophy, psychology, political government, religious studies, women studies, biology, astronomy, chemistry, physics, natural sciences, engineering, and computer science.");
+						ChatbotMain.print("Ok now that I have explained the majors, " + ChatbotMain.chatbot.getUsername() +  " ,what would you like to talk about now?");
+						newResponse = ChatbotMain.getInput().toLowerCase();
+						continueTalk(newResponse);
 					}
 				
 				}
@@ -135,7 +144,6 @@ public class ChatbotDanielE implements Topic {
 			else {
 					
 					ChatbotMain.print("Sorry I did not understand your input you wrote: " + newResponse + ". Ironically, I am still a dumb Harvard bot.");
-					oldResponse = newResponse;
 					talk("");
 			
 			}
@@ -195,7 +203,7 @@ public class ChatbotDanielE implements Topic {
 			}
 		}
 		
-		if(count > (allNewWords.length + allOldWords.length) / 2) {
+		if(count > (allNewWords.length + allOldWords.length) / 4) {
 			
 			ChatbotMain.print("Please enter something else. Your last input is very similar to this one.");
 		}
