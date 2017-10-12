@@ -188,11 +188,20 @@ public class ChatbotAliceK implements Topic {
 
 		
 
-		if( isFootballGame( response )) return;
+		if( isFootballGame( response )) {
+			System.out.println( "DEBUG isFootball returned true, leaving talk()" );
+			return;
+		}
 
-		if( isPositiveEmotions( response )) return;
+		if( isPositiveEmotions( response )) {
+			System.out.println( "DEBUG isPositive returned true, leaving talk()" );
+			return;
+		}
 		
-		if( isNegativeEmotions( response )) return;
+		if( isNegativeEmotions( response )) {
+			System.out.println( "DEBUG isNegative returned true, leaving talk()" );
+			return;
+		}
 
 		System.out.println("DEBUG justbefore keywords");
 
@@ -219,6 +228,8 @@ public class ChatbotAliceK implements Topic {
 				}
 			}
 		}
+		
+		System.out.println( "DEBUG  leaving talk() and did absolutely NOTHING" );
 	}
 
 
