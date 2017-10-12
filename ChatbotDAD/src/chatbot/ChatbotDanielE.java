@@ -19,6 +19,8 @@ public class ChatbotDanielE implements Topic {
 	private String[] classSizeKeys;
 
 	private String[] degreeKeys;
+	
+	private String[] agreeKeys;
 
 	
 	public ChatbotDanielE() {
@@ -33,9 +35,11 @@ public class ChatbotDanielE implements Topic {
         
         beginChat = true;
         
-        classSizeKeys = new String[] {"class size","class sizes","ratio","students"};
+        classSizeKeys = new String[] {"class size","class", "class sizes","ratio","students"};
         
-        degreeKeys = new String[] {"degree","degrees","major","concentration","majors","minor","minors"};
+        degreeKeys = new String[] {"degree","degrees","major","concentration","concentrations","majors","minor","minors"};
+        
+        agreeKeys = new String[] {"agreed","agree","sure","ok","fine","good"};
         
 	}
 
@@ -43,7 +47,7 @@ public class ChatbotDanielE implements Topic {
 		
 		if(beginChat == true) {
 			
-			ChatbotMain.print("Hey " + ChatbotMain.chatbot.getUsername() + ". I am the coursework bot. Unlike my emotional counterpart bots, I am usually nice and I love to play trivia games. If you want to terminate me, please say 'bye'. Otherwise, ask about our average class sizes, freedom of degrees and concentrations, or fun facts!");
+			ChatbotMain.print("Hey " + ChatbotMain.chatbot.getUsername() + ". I am the coursework bot. Unlike my emotional counterpart bots, I am usually nice and I love to play trivia games. If you want to terminate me, please say 'bye'. Otherwise, ask about our average class sizes and freedom of degrees and concentrations!");
 			beginChat = false; 
 			newResponse = ChatbotMain.getInput();
 			continueTalk(newResponse);
@@ -52,7 +56,7 @@ public class ChatbotDanielE implements Topic {
 		else if(response.equals("")) {
 			
 			ChatbotMain.print("Can you ask me something else?");
-			newResponse = ChatbotMain.getInput();
+			newResponse = ChatbotMain.getInput().toLowerCase();
 			checkIfRepeat(oldResponse, newResponse);
 			continueTalk(newResponse);
 			
@@ -60,7 +64,7 @@ public class ChatbotDanielE implements Topic {
 		else {
 			
 			ChatbotMain.print("Well, it was nice talking to you, "+ ChatbotMain.chatbot.getUsername() + "!" + "To go back to the main menu, type 'back'");
-			response = ChatbotMain.getInput();
+			response = ChatbotMain.getInput().toLowerCase();
 			
 			if(response.toLowerCase().equals("back")){
 				
@@ -99,6 +103,11 @@ public class ChatbotDanielE implements Topic {
 						ChatbotMain.print("Congrats " + ChatbotMain.chatbot.getUsername() + "the answer is 40 students.");
 					
 					}
+					ChatbotMain.print("Would you like me to tell you about our degrees and majors.");
+					newResponse = ChatbotMain.getInput().toLowerCase();
+						if(isTriggered(newResponse, agreeKeys)) {
+							continueTalk("major");
+						}
 				
 				}
 				else if (isTriggered(newResponse, degreeKeys)) {
@@ -111,8 +120,9 @@ public class ChatbotDanielE implements Topic {
 					else {
 						
 						ChatbotMain.print("Fun fact: Harvard does not use the term major. Instead it uses concentrations and minors");
-						ChatbotMain.print("Harvard features tons of majors varying from computer science, to biology, to humanities!");
-					
+						ChatbotMain.print("Harvard features tons of majors varying from computer science, to biology, to humanities! What interests you?");
+						newResponse = ChatbotMain.getInput().toLowerCase();
+						ChatbotMain.print("Surprisingly Harvard has " + newResponse);
 					}
 				
 				}
