@@ -63,11 +63,13 @@ public class ChatbotAliceK implements Topic {
 
 		food = new String[] {"Annenberg" , "Restaurant" , "Cafe"};
 
-		footballEmotions = new String[] { "I can't speak to imbeciles like you anymore. Press 2 and talk to admissions so that they can give you a piece of my mind... if you know where to find '2' that is." , "Don't you dare say that again." ,
-				"The Harvard vs Yale football game is a longstanding tradition. Harvard wins almost every year because Yale sucks at football, just like they do everything else. What's your opinion on how Harvard is at football? " , " Go Crimson! We may not be Alamaba State, but at least we're better than Yale! Let's hear it again: 'Harvard is great'",  
+		footballEmotions = new String[] { "I can't speak to imbeciles like you anymore. Press 2 and talk to admissions so that they can give you a piece of my mind... if you know where to find '2' that is." ,
+				"You're dumb and probably jealous. I dare you to test me again." ,
+				"The Harvard vs Yale football game is a longstanding tradition. Harvard wins almost every year because Yale sucks at football, just like they do everything else. What's your opinion on how Harvard is at football? " , " Go Crimson! We may not be Alamaba State, but at least we're better than Yale! Let's hear it again: 'Harvard is great'", 
 				"Harvard is great at football!! So glad you finally realized. Speak to admissions, this is the right place for you :)" }; 
 
 
+	//
 		goodbyeKeyword= "bye";
 		secretKeyword= "pug";
 		response = "";
