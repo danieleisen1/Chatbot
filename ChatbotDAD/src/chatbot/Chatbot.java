@@ -14,7 +14,7 @@ public class Chatbot {
 		danielM = new ChatbotDanielM();
 		aliceK = new ChatbotAliceK();
 		username = "Unknown User";
-		chatting = true; 
+		setChatting(true); 
 	}
 	
 	
@@ -38,20 +38,20 @@ public class Chatbot {
 		ChatbotMain.print("Hi! I am an intelligent Harvard machine that can respond to any questions you might have. Let's start off by introducting ourselves. I am the HarvardBot5000. What is your name?");
 		username = ChatbotMain.getInput();
 		ChatbotMain.print("What would you like to talk about " + username + ". I specialize in coursework, admissions, and student life!");
-		while(chatting) {
+		while(isChatting()) {
 			
 			String response = ChatbotMain.getInput();
 			
 			if(danielE.pathTriggered(response) || response.equals( "1" )) {
-				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				setChatting(false); //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				danielE.talk(response);
 			}
 			else if(danielM.isTriggered(response) || response.equals( "2") ) {
-				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				setChatting(false); //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				danielM.talk(response);
 			}
 			else if(aliceK.isTriggered(response) || response.equals( "3" )) {
-				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				setChatting(false); //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
 				aliceK.talk(response);
 			}
 			else {
@@ -60,6 +60,18 @@ public class Chatbot {
 				
 			}
 		}
+	}
+
+
+
+	public boolean isChatting() {
+		return chatting;
+	}
+
+
+
+	public void setChatting(boolean chatting) {
+		this.chatting = chatting;
 	}
 
 }
