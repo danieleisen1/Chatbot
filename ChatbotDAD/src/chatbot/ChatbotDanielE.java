@@ -35,7 +35,7 @@ public class ChatbotDanielE implements Topic {
         
         beginChat = true;
         
-        classSizeKeys = new String[] {"class size","class", "class sizes","ratio","students"};
+        classSizeKeys = new String[] {"class size","class", "average", "class sizes","ratio","students"};
         
         degreeKeys = new String[] {"degree","degrees","major","concentration","concentrations","majors","minor","minors"};
         
@@ -103,10 +103,10 @@ public class ChatbotDanielE implements Topic {
 						ChatbotMain.print("Congrats " + ChatbotMain.chatbot.getUsername() + "the answer is 40 students.");
 					
 					}
-					ChatbotMain.print("Would you like me to tell you about our degrees and majors.");
+					ChatbotMain.print("Would you like me to tell you about our degrees or majors?");
 					newResponse = ChatbotMain.getInput().toLowerCase();
 						if(isTriggered(newResponse, agreeKeys)) {
-							continueTalk("major");
+							continueTalk("degree");
 						}
 				
 				}
@@ -114,7 +114,11 @@ public class ChatbotDanielE implements Topic {
 					
 					if((ChatbotMain.findKeyword(newResponse,degreeKeys[0], 0) >=0) || (ChatbotMain.findKeyword(newResponse,degreeKeys[1], 0) >=0)) {
 						
-						ChatbotMain.print("Harvard offers graduate and undergraduate degree programs.");
+						ChatbotMain.print("Harvard offers graduate and undergraduate degree programs. Would you like to learn about our majors now?");
+						newResponse = ChatbotMain.getInput().toLowerCase();
+						if(isTriggered(newResponse, agreeKeys)) {
+							continueTalk("major");
+						}
 					
 					}
 					else {
@@ -126,15 +130,16 @@ public class ChatbotDanielE implements Topic {
 					}
 				
 				}
-				else {
+			}
+				
+			else {
 					
 					ChatbotMain.print("Sorry I did not understand your input you wrote: " + newResponse + ". Ironically, I am still a dumb Harvard bot.");
 					oldResponse = newResponse;
 					talk("");
 			
-				
-				}
 			}
+			
 			
 		}
 		
@@ -190,7 +195,7 @@ public class ChatbotDanielE implements Topic {
 			}
 		}
 		
-		if(count > (allNewWords.length + allOldWords.length) / 3) {
+		if(count > (allNewWords.length + allOldWords.length) / 2) {
 			
 			ChatbotMain.print("Please enter something else. Your last input is very similar to this one.");
 		}
