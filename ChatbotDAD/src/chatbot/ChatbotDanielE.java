@@ -27,7 +27,7 @@ public class ChatbotDanielE implements Topic {
 		
 		pathKeywords = new String[] {"coursework","classwork","course","class","classes"};
 		
-		introKeywords = new String[] {"class size","degrees","degree","major","majors"};
+		introKeywords = new String[] {"class size","class","classes","class sizes","degrees","degree","major","majors"};
 		
 		terminateKeyword = "bye";
 		
@@ -39,7 +39,7 @@ public class ChatbotDanielE implements Topic {
         
         degreeKeys = new String[] {"degree","degrees","major","concentration","concentrations","majors","minor","minors"};
        
-        agreeKeys = new String[] {"agreed","agree","sure","ok","fine","good"};
+        agreeKeys = new String[] {"agreed","agree","sure","ok","fine","good","yes","okay"};
         
 	}
 
@@ -58,8 +58,17 @@ public class ChatbotDanielE implements Topic {
 			oldResponse = newResponse;
 			ChatbotMain.print("Can you ask me something else?");
 			newResponse = ChatbotMain.getInput().toLowerCase();
-			checkIfRepeat(oldResponse, newResponse);
-			continueTalk(newResponse);
+			
+			if(checkIfRepeat(oldResponse, newResponse) == true) {
+				
+				ChatbotMain.print("Please enter something else. Your last input is very similar to this one.");
+				talk("");
+			}
+			
+			else{
+				
+				continueTalk(newResponse);
+			}
 			
 		}
 		else {
@@ -79,6 +88,7 @@ public class ChatbotDanielE implements Topic {
 	}
 	public void continueTalk(String newResponse) {
 		
+		this.newResponse = newResponse;
 		if(ChatbotMain.findKeyword(newResponse, terminateKeyword,0) == -1) {
 			
 			if(isTriggered(newResponse, introKeywords)) {
@@ -101,13 +111,21 @@ public class ChatbotDanielE implements Topic {
 					
 					else if (intResponse == 40) {
 						
-						ChatbotMain.print("Congrats " + ChatbotMain.chatbot.getUsername() + "the answer is 40 students.");
+						ChatbotMain.print("Congrats " + ChatbotMain.chatbot.getUsername() + " the answer is 40 students.");
 					
+					}
+					else if (ChatbotMain.findKeyword(newResponse, terminateKeyword,0) >= 0)
+					{
+						goodBye();
 					}
 					ChatbotMain.print("Would you like me to tell you about our degrees and majors?");
 					newResponse = ChatbotMain.getInput().toLowerCase();
 						if(isTriggered(newResponse, agreeKeys)) {
 							continueTalk("degree");
+						}
+						else if(ChatbotMain.findKeyword(newResponse, terminateKeyword,0) >= 0) {
+							
+							goodBye();
 						}
 						else {
 							ChatbotMain.print("Ok if you don't want to know about that, what would you like to talk about now?");
@@ -120,19 +138,27 @@ public class ChatbotDanielE implements Topic {
 					
 					if((ChatbotMain.findKeyword(newResponse,degreeKeys[0], 0) >=0) || (ChatbotMain.findKeyword(newResponse,degreeKeys[1], 0) >=0)) {
 						
-						ChatbotMain.print("Harvard offers graduate and undergraduate degree programs. Would you like to learn about our majors now?");
+						ChatbotMain.print("Harvard offers graduate and undergraduate degree programs. Harvard University has 12 degree-granting schools in addition to the Radcliffe Institute for Advanced Study. The University has grown from nine students with a single master to an enrollment of more than 20,000 degree candidates including undergraduate, graduate, and professional students. Would you like to learn about our majors now?");
 						newResponse = ChatbotMain.getInput().toLowerCase();
 						if(isTriggered(newResponse, agreeKeys)) {
 							continueTalk("major");
 						}
+						else if(ChatbotMain.findKeyword(newResponse, terminateKeyword,0) >= 0) {
+							
+							goodBye();
+						}
 					
+					}
+					else if(ChatbotMain.findKeyword(newResponse, terminateKeyword,0) >= 0) {
+						
+						goodBye();
 					}
 					else {
 						
 						ChatbotMain.print("Fun fact: Harvard does not use the term major. Instead it uses concentrations and minors");
 						ChatbotMain.print("Harvard features tons of majors varying from computer science, to biology, to humanities! What interests you?");
 						newResponse = ChatbotMain.getInput().toLowerCase();
-						ChatbotMain.print("Surprisingly Harvard has that major: " + newResponse + ". In addition we have visual arts, african american studies, antrhopology, asian studies, economics, english, foreign language, history, literature, linguisitics, music studies, philosophy, psychology, political government, religious studies, women studies, biology, astronomy, chemistry, physics, natural sciences, engineering, and computer science.");
+						ChatbotMain.print("Surprisingly Harvard has: " + newResponse + ". In addition we have visual arts, african american studies, antrhopology, asian studies, economics, english, foreign language, history, literature, linguisitics, music studies, philosophy, psychology, political government, religious studies, women studies, biology, astronomy, chemistry, physics, natural sciences, engineering, and computer science.");
 						ChatbotMain.print("Ok now that I have explained the majors, " + ChatbotMain.chatbot.getUsername() +  " ,what would you like to talk about now?");
 						newResponse = ChatbotMain.getInput().toLowerCase();
 						continueTalk(newResponse);
@@ -150,11 +176,9 @@ public class ChatbotDanielE implements Topic {
 			
 			
 		}
-		
-		else {
-		
-			ChatbotMain.print("I'm sorry you had to say bye. Now I must terminate :(");
-			System.exit(0);
+		else if(ChatbotMain.findKeyword(newResponse, terminateKeyword,0) >= 0) {
+			
+			goodBye();
 		}
 			
 	}
@@ -187,7 +211,7 @@ public class ChatbotDanielE implements Topic {
 	}
 	
 	
-	public void checkIfRepeat(String oldResponse, String newResponse) {
+	public boolean checkIfRepeat(String oldResponse, String newResponse) {
 		
 		String[] allOldWords = oldResponse.split(" ");
 		String[] allNewWords = newResponse.split(" ");
@@ -205,8 +229,17 @@ public class ChatbotDanielE implements Topic {
 		
 		if(count > (allNewWords.length + allOldWords.length) / 4) {
 			
-			ChatbotMain.print("Please enter something else. Your last input is very similar to this one.");
+			return true;
 		}
+		else{
+			
+			return false;
+		}
+	}
+	
+	public void goodBye() {
+		ChatbotMain.print("I'm sorry you had to say bye. Now I must terminate :(");
+		System.exit(0);
 	}
 }
 	
