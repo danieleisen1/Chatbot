@@ -15,7 +15,7 @@ public class Chatbot {
 		danielM = new ChatbotDanielM();
 		aliceK = new ChatbotAliceK();
 		username = "Unknown User";
-		chatting = true; 
+		setChatting(true); 
 	}
 	
 	
@@ -41,42 +41,41 @@ public class Chatbot {
 		ChatbotMain.print("What would you like to talk about " + username + ". I specialize in coursework, admissions, and student life!");
 		
 		while( chatting ) {
-			
 			System.out.println( "DEBUG Chatbot main event loop -- about to read user's string" );
-			
 			String response = ChatbotMain.getInput();
 			
 			workflow = 0;
 			
 			
 			if(danielE.pathTriggered(response) || response.equals( "1" )) {
-				
+
 				workflow=1;
 				
 				System.out.println( "DEBUG going into DanielE talk() ");
 				
-				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				setChatting(false); //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+
 				danielE.talk(response);
 				
 			}
 			else if(danielM.isTriggered(response) || response.equals( "2") ) {
-				
 				workflow=2;
-				
 				System.out.println( "DEBUG going into DanielM talk() ");
-				
-				chatting = false; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				setChatting(false); //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+
 				danielM.talk(response);
 				
 			}
 			else if(aliceK.isTriggered(response) || response.equals( "3" )) {
+
 			//else if(aliceK.isTriggered(response)) {
 				
 				System.out.println( "DEBUG going into AliceK talk() ");
 				
 				workflow =3;
 				
-				chatting = true; //exit the while loop. IMPORTANT TO KNOW BECAUSE YOU NEED TO EXIT WHILE LOOPS
+				setChatting( true );
+
 				aliceK.talk(response);
 				
 			}
@@ -93,6 +92,18 @@ public class Chatbot {
 
 	public static int getWorkFlow() {
 		return workflow;
+	}
+
+
+
+	public boolean isChatting() {
+		return chatting;
+	}
+
+
+
+	public void setChatting(boolean chatting) {
+		this.chatting = chatting;
 	}
 
 }
