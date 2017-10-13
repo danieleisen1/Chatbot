@@ -11,6 +11,7 @@ public class ChatbotDanielM implements Topic {
 	private int gpa;
 	private int currentEmotion;
 	private String decision;
+	private String word;
 
 	private int difference;
 
@@ -27,22 +28,6 @@ public class ChatbotDanielM implements Topic {
 
 	public void talk(String response)
 	{
-		/**ChatbotMain.print("Hey! So you want to talk about generic boring things, huh? I love talking about that. So tell me something.");
-		response = ChatbotMain.getInput();
-		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
-		{
-			if(ChatbotMain.findKeyword(response, secretKeyword, 0) >=0)
-			{
-				ChatbotMain.print("I cant even. I love pugs so much. Wow. You are so cool.");
-			}else
-			{
-				ChatbotMain.print("Yeah. Thats pretty cool. But there are thins I like even more. Tell me something else.");
-			}
-		}
-		ChatbotMain.print("Well , it was nice talking to you, "+ChatbotMain.chatbot.getUsername()+"!");
-		ChatbotMain.chatbot.startChatting();
-		 */
-
 		ChatbotMain.print("Hey, this is the admission bot and I have a few questions for you about getting into Harvard. First, Did you take an ACT test or SAT test?");
 		ChatbotMain.print("Say bye if you dont want to talk anymore");
 		response = ChatbotMain.getInput();
@@ -56,7 +41,7 @@ public class ChatbotDanielM implements Topic {
 				{
 					testScore(actScore,30, 36,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, but what is your GPA "+ChatbotMain.chatbot.getUsername()+"." ,"You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
 					gpa = ChatbotMain.getIntegerInput();
-					testScore(gpa,90,100,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard would you apply early or regular", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", would you apply early or regular");	
+					testScore(gpa,90,100,"HAHAHAHA, thats really bad, would you apply early or regular?", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", would you apply early or regular");	
 					decision = ChatbotMain.getInput();
 					if(ChatbotMain.findKeyword(decision,"early", 0) >=0)
 					{
@@ -64,6 +49,7 @@ public class ChatbotDanielM implements Topic {
 						{
 							difference = 30-actScore;
 							ChatbotMain.print("Good Luck! Only 14.5% of applicants get in, so you should still try to improve your ACT of "+actScore+" by " +difference+" to get a 30 and have a better chance to get in");
+							
 						}
 						else 
 						{
@@ -89,7 +75,7 @@ public class ChatbotDanielM implements Topic {
 					actScore = ChatbotMain.getIntegerInput();
 					testScore(actScore,30, 36,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, but what is your GPA "+ChatbotMain.chatbot.getUsername()+".", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
 					gpa = ChatbotMain.getIntegerInput();
-					testScore(gpa,90,100,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, would you apply early or regular", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your essay");	
+					testScore(gpa,90,100,"HAHAHAHA, thats really bad, would you apply early or regular?", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your essay");	
 					decision = ChatbotMain.getInput();
 					if(ChatbotMain.findKeyword(decision,"early", 0) >=0)
 					{
@@ -116,6 +102,7 @@ public class ChatbotDanielM implements Topic {
 						}
 					}
 				}
+				
 			}	
 			if(ChatbotMain.findKeyword(response,"sat", 0) >=0)
 			{
@@ -123,9 +110,9 @@ public class ChatbotDanielM implements Topic {
 				satScore = ChatbotMain.getIntegerInput();
 				if(satScore>=0 && satScore<=1600)
 				{
-					testScore(actScore,30, 36,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, but what is your GPA "+ChatbotMain.chatbot.getUsername()+".", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
+					testScore(satScore,1400, 1600,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, but what is your GPA "+ChatbotMain.chatbot.getUsername()+".", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
 					gpa = ChatbotMain.getIntegerInput();
-					testScore(gpa,90,100,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, would you apply early or regular", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your essay");
+					testScore(gpa,90,100,"HAHAHAHA, thats really bad, would you apply early or regular?", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your essay");
 					decision = ChatbotMain.getInput();
 					if(ChatbotMain.findKeyword(decision,"early", 0) >=0)
 					{
@@ -156,9 +143,9 @@ public class ChatbotDanielM implements Topic {
 				{
 					ChatbotMain.print("Please enter a number between 0 and 36");
 					satScore = ChatbotMain.getIntegerInput();
-					testScore(actScore,30, 36,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, but what is your GPA "+ChatbotMain.chatbot.getUsername()+".", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
+					testScore(satScore,1400, 1600,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, but what is your GPA "+ChatbotMain.chatbot.getUsername()+".", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
 					gpa = ChatbotMain.getIntegerInput();
-					testScore(gpa,90,100,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, would you apply early or regular", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", would you apply early or regular");	
+					testScore(gpa,90,100,"HAHAHAHA, thats really bad, would you apply early or regular?", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", would you apply early or regular");	
 					decision = ChatbotMain.getInput();
 					if(ChatbotMain.findKeyword(decision,"early", 0) >=0)
 					{
