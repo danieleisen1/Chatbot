@@ -50,6 +50,7 @@ public class ChatbotDanielM implements Topic {
 							difference = 30-actScore;
 							ChatbotMain.print("Good Luck! Only 14.5% of applicants get in, so you should still try to improve your ACT of "+actScore+" by " +difference+" to get a 30 and have a better chance to get in");
 							
+							
 						}
 						else 
 						{
@@ -75,7 +76,7 @@ public class ChatbotDanielM implements Topic {
 					actScore = ChatbotMain.getIntegerInput();
 					testScore(actScore,30, 36,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, but what is your GPA "+ChatbotMain.chatbot.getUsername()+".", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
 					gpa = ChatbotMain.getIntegerInput();
-					testScore(gpa,90,100,"HAHAHAHA, thats really bad, would you apply early or regular?", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your essay");	
+					testScore(gpa,90,100,"HAHAHAHA, thats really bad, would you apply early or regular?", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", would you apply early or regular decision?");	
 					decision = ChatbotMain.getInput();
 					if(ChatbotMain.findKeyword(decision,"early", 0) >=0)
 					{
@@ -102,6 +103,13 @@ public class ChatbotDanielM implements Topic {
 						}
 					}
 				}
+				ChatbotMain.print("Type in bye to end the conversation");
+				word = ChatbotMain.getInput();
+				if(ChatbotMain.findKeyword(word, goodbyeKeyword, 0)>=0)
+				{
+					ChatbotMain.print("Thanks for the talk "+ChatbotMain.chatbot.getUsername());
+					ChatbotMain.chatbot.startChatting();
+				}
 				
 			}	
 			if(ChatbotMain.findKeyword(response,"sat", 0) >=0)
@@ -112,7 +120,7 @@ public class ChatbotDanielM implements Topic {
 				{
 					testScore(satScore,1400, 1600,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, but what is your GPA "+ChatbotMain.chatbot.getUsername()+".", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
 					gpa = ChatbotMain.getIntegerInput();
-					testScore(gpa,90,100,"HAHAHAHA, thats really bad, would you apply early or regular?", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your essay");
+					testScore(gpa,90,100,"HAHAHAHA, thats really bad, would you apply early or regular?", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", would you apply early or regular decision?");
 					decision = ChatbotMain.getInput();
 					if(ChatbotMain.findKeyword(decision,"early", 0) >=0)
 					{
@@ -145,7 +153,7 @@ public class ChatbotDanielM implements Topic {
 					satScore = ChatbotMain.getIntegerInput();
 					testScore(satScore,1400, 1600,"HAHAHAHA, thats terrible, Retake it immediatly if you wanna go to Harvard, but what is your GPA "+ChatbotMain.chatbot.getUsername()+".", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", but what is your GPA");
 					gpa = ChatbotMain.getIntegerInput();
-					testScore(gpa,90,100,"HAHAHAHA, thats really bad, would you apply early or regular?", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", would you apply early or regular");	
+					testScore(gpa,90,100,"HAHAHAHA, thats really bad, would you apply early or regular?", "You are on the right track to get into harvard " +ChatbotMain.chatbot.getUsername()+", would you apply early or regular?");	
 					decision = ChatbotMain.getInput();
 					if(ChatbotMain.findKeyword(decision,"early", 0) >=0)
 					{
@@ -173,7 +181,13 @@ public class ChatbotDanielM implements Topic {
 					}
 
 				}	
-
+				ChatbotMain.print("Type in bye to end the conversation");
+				word = ChatbotMain.getInput();
+				if(ChatbotMain.findKeyword(word, goodbyeKeyword, 0)>=0)
+				{
+					ChatbotMain.print("Thanks for the talk "+ChatbotMain.chatbot.getUsername());
+					ChatbotMain.chatbot.startChatting();
+				}
 			}
 			int currentEmotion=ChatbotMain.chatbot.getAliceK().getEmotion();
 			//ChatbotMain.chatbot.getAliceK().setEmotion(1);   
