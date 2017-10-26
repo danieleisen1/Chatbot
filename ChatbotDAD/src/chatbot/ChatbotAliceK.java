@@ -52,7 +52,7 @@ public class ChatbotAliceK implements Topic {
 
 		footballGame = new String[] {"yes" , "football" , "football game" , "crimson" , "bulldogs", "Bulldogs", "harvard crimson" , "yale bulldogs"};
 
-		positive = new String[] {"good", "great", "amazing", "awesome" , "terrific" , "go" ,"go crimson" , "beautiful", "amazing", "fun", "pretty" , "delicious", "scrumptious", "yummy", "yum"};
+		positive = new String[] {"good", "great", "amazing", "awesome" , "terrific" , "go" ,"go crimson" , "beautiful", "amazing", "fun", "pretty" , "delicious", "yummy"};
 
 		negative = new String[] {"go bulldogs" , "go yale", "awful", "horrible", "bad" , "sucks", "ugly", "horrible", "disgusting", "gross", "ew"};
 
@@ -111,10 +111,24 @@ public class ChatbotAliceK implements Topic {
 				
 				return true;
 			}
+			else {
+				//if( !(findWordInString( response, positive[i] )) && !(findWordInString( response, negative[i] )) && !(findWordInString( response, footballEmotions[i] ))) {
+					
+				//	ChatbotMain.print( "I'm sorry, I don't understand. Could you please reply to me previous question more accurately?" );
+				//	}
+			}
 		}
 		//System.out.println("DEBUG exited footbgallgame loop");
 		return false;
 	}
+	
+	//public void String notAKeyword() {
+		
+		//if( !(findWordInString( response, positive[i] )) && !(findWordInString( response, negative[i] )) && !(findWordInString( response, footballEmotions[i] ))) {
+			
+		//	 ChatbotMain.print( "I'm sorry, I don't understand. Could you please reply to me previous question more accurately?" );
+			//}
+	//}
 	
 	boolean findWordInString( String searchString, String key ) {
 		return searchString.contains( key );
@@ -135,9 +149,22 @@ public class ChatbotAliceK implements Topic {
 					findWordInString( response, "harvard" )) {	
 			
 				emotionCounter++;
-				
+				//System.out.println("berfore emoyiom");
+				//System.out.println(" left  emoyiom");
 				//System.out.println("trying to find the emotioncounter" + emotionCounter);
-				ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+				
+				
+				if(emotionCounter+2 > footballEmotions.length - 1 || emotionCounter + 2 < 0){
+					//	System.out.println(" in berfore emoyiom");
+					ChatbotMain.print( "I'm sorry, I thought that I made it clear. I don't want to speak with you anymore because our admissions officer is waiting to flatter you. Press '2' to speak with admissions." );
+						//System.out.println(" after berfore emoyiom");
+					}
+				
+				else {
+					
+					ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+					
+				}
 				return true;
 			}
 
@@ -146,14 +173,31 @@ public class ChatbotAliceK implements Topic {
 				emotionCounter--;
 				
 				//System.out.println("trying to find the emotioncounter" + emotionCounter);
-				ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
-				return true;
-			}
+				//ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+				
 
-	
+				if(emotionCounter + 2 < 0 || emotionCounter +2> footballEmotions.length-1){
+					//	System.out.println(" in berfore emoyiom");
+					ChatbotMain.print( "Congratulations! You've officially been black-listed. Press '2' to speak with admissions, idiot." );
+						//System.out.println(" after berfore emoyiom");
+					}
+				
+				else {
+					//System.out.println("DEBUG in posem" + emotionCounter + 2);
+					ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+					
+				}
+				return true;
+			} //if( !(findWordInString( response, positive[i] )) && !(findWordInString( response, negative[i] )) && !(findWordInString( response, footballEmotions[i] ))) {
+				
+			//	ChatbotMain.print( "I'm sorry, I don't understand. Could you please reply to me previous question more accurately?" );
+			//}
+			
+			
 		}
 		return false;
 	}
+	
 	
 	private boolean isNegativeEmotions( String response ) {
 		for(int i=0 ; i <negative.length ; i++ ) {
@@ -166,7 +210,20 @@ public class ChatbotAliceK implements Topic {
 				
 				//System.out.println("trying to find the emotioncounter" + emotionCounter);
 
-				ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+				//ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+				if(emotionCounter + 2 < 0 || emotionCounter +2> footballEmotions.length-1){
+					//	System.out.println(" in berfore emoyiom");
+					ChatbotMain.print( "Congratulations! You've officially been black-listed. Press '2' to speak with admissions, idiot." );
+						//System.out.println(" after berfore emoyiom");
+					}
+				
+				else {
+					
+					//System.out.println("DEBUG in negemotions" + emotionCounter+2);
+					ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+					
+				}
+				
 				return true;
 			}
 
@@ -175,9 +232,22 @@ public class ChatbotAliceK implements Topic {
 				emotionCounter++;
 				//System.out.println("trying to find the emotioncounter" + emotionCounter);
 
-				ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+				//ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+				
+				if(emotionCounter +2  < 0  || emotionCounter + 2 > footballEmotions.length-1){
+					//	System.out.println(" in berfore emoyiom");
+					ChatbotMain.print( "I'm sorry, I thought that I made it clear. I don't want to speak with you anymore because our admissions officer is waiting to flatter you. Press '2' to speak with admissions." );
+						//System.out.println(" after berfore emoyiom");
+					}
+				
+				else {
+					
+					ChatbotMain.print( footballEmotions[emotionCounter+2 ] );
+					
+				}
 				return true;
 			}
+			
 
 		}
 		return false;
@@ -192,7 +262,7 @@ public class ChatbotAliceK implements Topic {
 	 This way the next userRequest will come in soon, as new call to this talk() method.
 	 */
 	public void talk(String response) {
-		
+	
 		//System.out.println("DEBUG Welcome to AliceK talk()");
 
 		if( isPositiveEmotions( response )) {
@@ -209,7 +279,7 @@ public class ChatbotAliceK implements Topic {
 			//System.out.println( "DEBUG isFootball returned true, leaving talk()" );
 			return;
 		}
-
+		
 		//System.out.println("DEBUG justbefore keywords");
 		for( String s : keywords ) {
 			
@@ -220,19 +290,20 @@ public class ChatbotAliceK implements Topic {
 					ChatbotMain.print("I am the expert of student life at Harvard. Want to know more about the student life?");
 					return;
 				}
-				else if(s.equals("yes") || s.equals("sure") || s.equals("ok") || s.equals("okay")  ) {
-					ChatbotMain.print("The Harvard vs. Yale football game is a longstanding tradition. Harvard wins every year though, of course. ");
-					return;
-				}
+				//else if(s.equals("yes") || s.equals("sure") || s.equals("ok") || s.equals("okay")  ) {
+				//ChatbotMain.print("The Harvard vs. Yale football game is a longstanding tradition. Harvard wins every year though, of course. ");
+				//	return;
+				//}
 				else if(s.equalsIgnoreCase("no") || s.equalsIgnoreCase("na") || s.equalsIgnoreCase("nah")) {
 					ChatbotMain.print("Okay, well in that case I am of no use. Type in '2' for admissions advice.");
 					//	System.out.println( "DEBUG inside the no" );
 					return;
 				}
+
 				//System.out.println( "before checking if in football game" );
 				//System.out.println("DEBUGjust got out of for");
 	
-				switch( s ) {
+			/**	switch( s ) {
 				case "stuff": ChatbotMain.print(" What kind of stuff? Food? The Annenberg dining hall is awful, so don't get your food from there.");  return;
 				case "whatever": ChatbotMain.print(" Whatever is not in the vocabulary of a Harvard student --underqualified. Press 2 for admissions to prove me right."); return;
 				case "go yale" : ChatbotMain.print(" Did you mean Harvard? Yeah go Harvard!"); return;
@@ -250,15 +321,18 @@ public class ChatbotAliceK implements Topic {
 				//case "party" : ChatbotMain.print("Party?!!! Yeah don't worry we have those. "); return;
 				//case "parties" : ChatbotMain.print("Party?!!! Yeah don't worry we have those. "); return;
 				case "harvard" : ChatbotMain.print("The greatest school in the world, say 'football' to compare Harvard to Yale for the upcoming Harvard v. Yale footballg game. "); return;
-				}
+				} */
 			}
 		}
 		
-		//System.out.println( "DEBUG  leaving talk() and did absolutely NOTHING" );
+	//	System.out.println( "DEBUG  before checking emotion " );
+		
+		//checkEmotionValue();
+		ChatbotMain.print("I'm sorry. I don't understand. Please write a proper response for the previous question.");
+		
+	
+		
 	}
-
-
-
 
 	public boolean findWordInArray( String word, String[] array ) {
 		for( String s : array ) {

@@ -8,7 +8,9 @@ public class ChatbotMain {
 	public static Scanner inputSource = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		chatbot.startChatting();
+
+			chatbot.startChatting();
+		
 	}
 	
 	//Copied from class notes Utility Class
